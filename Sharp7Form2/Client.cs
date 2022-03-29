@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 using Sharp7;
 
 namespace Sharp7Form2
@@ -69,14 +70,10 @@ namespace Sharp7Form2
         {
             if (area == "Q")
             {
-
                 byte[] buffer = new byte[1];
-                S7.SetBitAt(buffer, pos, bit, value);
-                mClient.ABWrite(pos, 1, buffer);
+                S7.SetBitAt(buffer, 0, bit, value);
+                mClient.WriteArea(S7Area.PA, 0, pos*8 + bit, 1, S7WordLength.Bit, buffer);
             }
-        }
-
-            
         }
     }
 }

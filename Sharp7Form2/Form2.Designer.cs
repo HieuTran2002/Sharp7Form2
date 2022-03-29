@@ -66,7 +66,7 @@
             this.IpAdressTB.Name = "IpAdressTB";
             this.IpAdressTB.Size = new System.Drawing.Size(233, 27);
             this.IpAdressTB.TabIndex = 1;
-            this.IpAdressTB.Text = "&";
+            this.IpAdressTB.Text = "192.168.0.241";
             // 
             // CnnBTN
             // 

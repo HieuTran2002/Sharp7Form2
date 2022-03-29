@@ -24,6 +24,7 @@ namespace Sharp7Form2
         {
             InitializeComponent();
             IpAdressTB.Text = GetIPAddress();
+            //IpAdressTB.Text = "192.168.0.241";
             Rank.SelectedIndex = 0;
             Slot.SelectedIndex = 1;
         }
@@ -55,5 +56,6 @@ namespace Sharp7Form2
             }
             return result;
         }
+
     }
 }

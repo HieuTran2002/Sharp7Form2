@@ -72,10 +72,10 @@ namespace Sharp7Form2
         {
             configDialog configForm = new configDialog();
             configForm.Show();
-            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed);
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_trackbar);
         }
 
-        private void configDialogClosed(object sender, FormClosedEventArgs e)
+        private void configDialogClosed_trackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
             TrackBar trb = new TrackBar(client, config.name, config.dataType, config.area, config.pos, config.bit);
@@ -84,10 +84,18 @@ namespace Sharp7Form2
 
         private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog config = sender as configDialog;
-            TrackBar trb = new TrackBar(client, config.name, config.dataType, config.area, config.pos, config.bit);
-            panel1.Controls.Add(trb);
+            configDialog configForm = new configDialog();
+            configForm.Show();
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_button);
 
+
+        }
+
+        private void configDialogClosed_button(object sender, FormClosedEventArgs e)
+        {
+            configDialog config = sender as configDialog;
+            button btn = new button(client, config.name, config.dataType, config.area, config.pos, config.bit);
+            panel1.Controls.Add(btn);
         }
     }
 }

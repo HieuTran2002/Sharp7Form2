@@ -40,5 +40,6 @@ namespace Sharp7Form2
             bit = Convert.ToInt16(comboBox3.Text);
             this.Close();
         }
+
     }
 }
