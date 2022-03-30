@@ -17,6 +17,7 @@ namespace Sharp7Form2
         public string area;
         public int pos;
         public int bit;
+        public int maxRange;
         public configDialog()
         {
             InitializeComponent();
@@ -33,13 +34,24 @@ namespace Sharp7Form2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            name = textBox1.Text;
-            dataType = comboBox1.Text;
-            area = comboBox2.Text;
-            pos = Convert.ToInt16(textBox2.Text);
-            bit = Convert.ToInt16(comboBox3.Text);
-            this.Close();
+            try
+            {
+                name = textBox1.Text;
+                dataType = comboBox1.Text;
+                area = comboBox2.Text;
+                pos = Convert.ToInt16(textBox2.Text);
+                bit = Convert.ToInt16(comboBox3.Text);
+                maxRange = Convert.ToInt16(textBox3.Text);
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
+        
     }
 }

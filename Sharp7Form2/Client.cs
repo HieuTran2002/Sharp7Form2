@@ -39,22 +39,18 @@ namespace Sharp7Form2
                     S7.SetIntAt(buffer, 0, Convert.ToInt16(value));
                     result = mClient.ABWrite(pos, 2, buffer);
                         //MessageBox.Show(mClient.ErrorText(result));
-
                 }
                 else if (datatype == "REAL")
                 {
                     buffer = new byte[4];
                     S7.SetRealAt(buffer, 0, Convert.ToSingle(value));
                     result = mClient.ABWrite(pos, 4, buffer);
-
                 }
                 else if (datatype == "WORD")
                 {
                     buffer = new byte[2];
                     S7.SetWordAt(buffer, 0, Convert.ToUInt16(value));
-                    
                     result = mClient.ABWrite(pos, 4, buffer);
-
                 }  
                 else if (datatype == "DWORD")
                 {
@@ -62,7 +58,6 @@ namespace Sharp7Form2
                     S7.SetWordAt(buffer, 0, Convert.ToUInt16(value));
                     result = mClient.ABWrite(pos, 4, buffer);
                 }
-                
                             
             }                    
         }

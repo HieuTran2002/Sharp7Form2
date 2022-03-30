@@ -34,27 +34,31 @@ namespace Sharp7Form2
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 MouseDownLocation = e.Location;
             }
-            
+            else if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+
         }
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < 1016)
+                if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < Parent.Width)
                 {
                     this.Left = e.X + this.Left - MouseDownLocation.X;
                 }
                 if (this.Top + (e.Y - MouseDownLocation.Y) > 0 && this.Bottom + (e.Y - MouseDownLocation.Y) < 559)
                 {
                     this.Top = e.Y + this.Top - MouseDownLocation.Y;
-
                 }
             }
+            
         }
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
@@ -85,5 +89,9 @@ namespace Sharp7Form2
 
         }
 
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Parent.Controls.Remove(this);
+        }
     }
 }

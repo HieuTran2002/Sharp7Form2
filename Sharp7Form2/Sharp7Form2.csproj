@@ -81,17 +81,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackBar.cs">
+    <Compile Include="HTrackBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TrackBar.Designer.cs">
-      <DependentUpon>TrackBar.cs</DependentUpon>
+    <Compile Include="HTrackBar.Designer.cs">
+      <DependentUpon>HTrackBar.cs</DependentUpon>
     </Compile>
     <Compile Include="label.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="label.Designer.cs">
       <DependentUpon>label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerticalTrackBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VerticalTrackBar.Designer.cs">
+      <DependentUpon>VerticalTrackBar.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="button.resx">
       <DependentUpon>button.cs</DependentUpon>
@@ -114,11 +120,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TrackBar.resx">
-      <DependentUpon>TrackBar.cs</DependentUpon>
+    <EmbeddedResource Include="HTrackBar.resx">
+      <DependentUpon>HTrackBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="label.resx">
       <DependentUpon>label.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerticalTrackBar.resx">
+      <DependentUpon>VerticalTrackBar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

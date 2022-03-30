@@ -18,6 +18,7 @@ namespace Sharp7Form2
         private bool editable = false;
         private bool connected = false;
         private Client client;
+        private S7Client.S7CpuInfo cpu;
         public Form1()
         {
             InitializeComponent();
@@ -36,6 +37,8 @@ namespace Sharp7Form2
                 //client.Disconnect();
                 cnnDisBtn.Text = "Connect";
                 toolStripStatusLabel1.Text = "Disconnected";
+
+
             }
             else
             {
@@ -43,6 +46,7 @@ namespace Sharp7Form2
                 connectDialog.Show();
                 connectDialog.FormClosed += new FormClosedEventHandler(CnnDialogClosed);
             }
+            
         }
 
         private async void CnnDialogClosed(object sender, FormClosedEventArgs e)
@@ -55,6 +59,12 @@ namespace Sharp7Form2
                 connected = true;
                 cnnDisBtn.Text = "Disconnect";
                 toolStripStatusLabel1.Text = "Connected";
+
+                client.client.GetCpuInfo(ref cpu);
+
+                label3.Text = cpu.ModuleName;
+                label4.Text = cpu.SerialNumber;
+                label5.Text = cpu.ASName;
             }
             else
             {
@@ -78,7 +88,7 @@ namespace Sharp7Form2
         private void configDialogClosed_trackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
-            TrackBar trb = new TrackBar(client, config.name, config.dataType, config.area, config.pos, config.bit);
+            HTrackBar trb = new HTrackBar(client, config.name, config.dataType, config.maxRange, config.area, config.pos, config.bit);
             panel1.Controls.Add(trb);
         }
 
@@ -96,6 +106,21 @@ namespace Sharp7Form2
             configDialog config = sender as configDialog;
             button btn = new button(client, config.name, config.dataType, config.area, config.pos, config.bit);
             panel1.Controls.Add(btn);
+        }
+
+        private void labelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            configDialog configForm = new configDialog();
+            configForm.Show();
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_label);
+
+        }
+        private void configDialogClosed_label(object sender, FormClosedEventArgs e)
+        {
+            configDialog config = sender as configDialog;
+            label lb = new label(client, config.name, config.dataType, config.area, config.pos, config.bit);
+            panel1.Controls.Add(lb);
+
         }
     }
 }
