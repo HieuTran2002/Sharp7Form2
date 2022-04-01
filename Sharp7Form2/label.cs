@@ -20,17 +20,17 @@ namespace Sharp7Form2
         private string mArea;
         private int mPos;
         private int mBit;
-        private Client mClient;
+        private S7Driver driver;
 
         private System.Windows.Forms.Timer timer1;
-        public label(Client c, string name, string datatype, string area, int pos, int bit)
+        public label(S7Driver c, string name, string datatype, string area, int pos, int bit)
         {
             InitializeComponent();
             mDatatype = datatype;
             mArea = area;
             mPos = pos;
             mBit = bit;
-            mClient = c;
+            driver = c;
             timer1 = new System.Windows.Forms.Timer();
 
             timer1.Interval = 200;
@@ -50,63 +50,7 @@ namespace Sharp7Form2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = read();
-        }
-        private string read()
-        {
-            int readResult = 0;
-            switch (mDatatype)
-            {
-                case "INT":
-                    buffer = new byte[2];
-                    break;
-                case "WORD":
-                    buffer = new byte[2];
-                    break;
-                case "DWORD":
-                    buffer = new byte[4];
-                    break;
-                case "REAL":
-                    buffer = new byte[4];
-                    break;
-            }
-            //buffer = new byte[100];
-
-            switch (mArea)
-            {
-                case "Q":
-                    readResult = mClient.client.ABRead(mPos, buffer.Length, buffer);
-                    break;
-                case "I":
-                    readResult = mClient.client.EBRead(0, buffer.Length, buffer);
-                    break;
-                case "M":
-                    readResult = mClient.client.MBRead(0, buffer.Length, buffer);
-                    break;
-            }
-            if (readResult == 0)
-            {
-                switch (mDatatype)
-                {
-                    case "INT":
-                        return S7.GetIntAt(buffer, 0).ToString();
-                    case "REAL":
-                        return S7.GetRealAt(buffer, 0).ToString();
-                    case "WORD":
-                        return S7.GetWordAt(buffer, 0).ToString();
-                    case "DWORD":
-                        return S7.GetDWordAt(buffer, 0).ToString();
-                    default:
-                        return "null";
-                        
-                }
-            }
-            else
-            {
-                return mClient.client.ErrorText(readResult);
-
-            }
-
+            label1.Text = driver.client.read(mDatatype, mArea, mPos);
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)

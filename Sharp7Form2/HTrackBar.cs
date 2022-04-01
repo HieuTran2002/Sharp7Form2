@@ -11,10 +11,10 @@ namespace Sharp7Form2
         private string mArea;
         private int mPos;
         private int mBit;
-        private Client mClient;
+        private S7Driver driver;
         
 
-        public HTrackBar(Client c, string name, string datatype, int maxRange, string area, int pos, int bit)
+        public HTrackBar(S7Driver c, string name, string datatype, int maxRange, string area, int pos, int bit)
         {
             InitializeComponent();
             label1.Text = name;
@@ -22,7 +22,7 @@ namespace Sharp7Form2
             mArea = area;
             mPos = pos;
             mBit = bit;
-            mClient = c;
+            driver = c;
 
             trackBar1.Maximum = maxRange;
             
@@ -54,7 +54,7 @@ namespace Sharp7Form2
         {
             try
             {
-                mClient.Write(trackBar1.Value.ToString(), mDatatype, mArea, mPos, mBit);
+                driver.client.Write(trackBar1.Value.ToString(), mDatatype, mArea, mPos, mBit);
             }
             catch (System.Exception ex)
             {
@@ -85,7 +85,11 @@ namespace Sharp7Form2
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 MouseDownLocation = e.Location;
-            } 
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
         }
 
    }

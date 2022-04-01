@@ -59,7 +59,7 @@
     <Compile Include="button.Designer.cs">
       <DependentUpon>button.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client.cs" />
+    <Compile Include="S7Driver.cs" />
     <Compile Include="Sharp7Client.cs" />
     <Compile Include="configDialog.cs">
       <SubType>Form</SubType>

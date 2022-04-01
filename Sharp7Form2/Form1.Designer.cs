@@ -36,11 +36,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verticalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizontalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -53,7 +54,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.labelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -108,7 +108,7 @@
             // 
             this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonToolStripMenuItem,
-            this.trackBarToolStripMenuItem});
+            this.writeToolStripMenuItem});
             this.addToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
@@ -122,43 +122,50 @@
             this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.buttonToolStripMenuItem.Text = "Read";
             // 
-            // trackBarToolStripMenuItem
+            // labelToolStripMenuItem
             // 
-            this.trackBarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelToolStripMenuItem.Name = "labelToolStripMenuItem";
+            this.labelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.labelToolStripMenuItem.Text = "Label";
+            this.labelToolStripMenuItem.Click += new System.EventHandler(this.labelToolStripMenuItem_Click);
+            // 
+            // writeToolStripMenuItem
+            // 
+            this.writeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonStripMenuItem,
+            this.trackbarToolStripMenuItem});
+            this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.writeToolStripMenuItem.Text = "Write";
+            // 
+            // buttonStripMenuItem
+            // 
+            this.buttonStripMenuItem.Name = "buttonStripMenuItem";
+            this.buttonStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.buttonStripMenuItem.Text = "Button";
+            this.buttonStripMenuItem.Click += new System.EventHandler(this.buttonToolStripMenuItem_Click);
+            // 
+            // trackbarToolStripMenuItem
+            // 
+            this.trackbarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.verticalToolStripMenuItem,
             this.horizontalToolStripMenuItem});
-            this.trackBarToolStripMenuItem.Name = "trackBarToolStripMenuItem";
-            this.trackBarToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
-            this.trackBarToolStripMenuItem.Text = "Write";
+            this.trackbarToolStripMenuItem.Name = "trackbarToolStripMenuItem";
+            this.trackbarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.trackbarToolStripMenuItem.Text = "Trackbar";
             // 
             // verticalToolStripMenuItem
             // 
             this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
-            this.verticalToolStripMenuItem.Text = "Button";
-            this.verticalToolStripMenuItem.Click += new System.EventHandler(this.verticalToolStripMenuItem_Click);
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.verticalToolStripMenuItem.Text = "Vertical";
             // 
             // horizontalToolStripMenuItem
             // 
-            this.horizontalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verticalToolStripMenuItem1,
-            this.horizontalToolStripMenuItem1});
             this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
-            this.horizontalToolStripMenuItem.Text = "Trackbar";
-            // 
-            // verticalToolStripMenuItem1
-            // 
-            this.verticalToolStripMenuItem1.Name = "verticalToolStripMenuItem1";
-            this.verticalToolStripMenuItem1.Size = new System.Drawing.Size(162, 26);
-            this.verticalToolStripMenuItem1.Text = "Vertical";
-            // 
-            // horizontalToolStripMenuItem1
-            // 
-            this.horizontalToolStripMenuItem1.Name = "horizontalToolStripMenuItem1";
-            this.horizontalToolStripMenuItem1.Size = new System.Drawing.Size(162, 26);
-            this.horizontalToolStripMenuItem1.Text = "Horizontal";
-            this.horizontalToolStripMenuItem1.Click += new System.EventHandler(this.horizontalToolStripMenuItem1_Click);
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.horizontalToolStripMenuItem.Text = "Horizontal";
+            this.horizontalToolStripMenuItem.Click += new System.EventHandler(this.horizontalToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -200,7 +207,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.label2.Location = new System.Drawing.Point(1, 252);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 39);
+            this.label2.Size = new System.Drawing.Size(178, 38);
             this.label2.TabIndex = 5;
             this.label2.Text = "PLC status";
             // 
@@ -270,13 +277,6 @@
             this.label8.TabIndex = 9;
             this.label8.Text = ".............";
             // 
-            // labelToolStripMenuItem
-            // 
-            this.labelToolStripMenuItem.Name = "labelToolStripMenuItem";
-            this.labelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.labelToolStripMenuItem.Text = "Label";
-            this.labelToolStripMenuItem.Click += new System.EventHandler(this.labelToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -320,11 +320,11 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buttonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem trackBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buttonStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trackbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

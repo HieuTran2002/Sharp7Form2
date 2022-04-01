@@ -17,8 +17,10 @@ namespace Sharp7Form2
         private string mArea;
         private int mPos;
         private int mBit;
-        private Client mClient;
-        public button(Client c, string name, string datatype, string area, int pos, int bit)
+        private S7Driver driver;
+        private bool lastValue = false;
+        private bool stink = false;
+        public button(S7Driver c, string name, string datatype, string area, int pos, int bit)
         {
             InitializeComponent();
             button1.Text = name;
@@ -26,7 +28,7 @@ namespace Sharp7Form2
             mArea = area;
             mPos = pos;
             mBit = bit;
-            mClient = c;
+            driver = c;
 
 
 
@@ -63,35 +65,117 @@ namespace Sharp7Form2
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (stink)
             {
-                mClient.Write(true, mArea, mPos, mBit);
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    int result = driver.client.Write(!lastValue, mArea, mPos, mBit);
+                    if (result == 0)
+                    {
+                        lastValue = !lastValue;
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                MessageBox.Show(ex.TargetSite.ToString());
+                    MessageBox.Show(ex.TargetSite.ToString());
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    int result = driver.client.Write(true, mArea, mPos, mBit);
+                    if (result == 0)
+                    {
+                        lastValue = true;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.TargetSite.ToString());
+                }
+
             }
 
         }
 
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
-            try
+            if (!stink)
             {
-                mClient.Write(false, mArea, mPos, mBit);
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    int result = driver.client.Write(false, mArea, mPos, mBit);
+                    if (result == 0)
+                    {
+                        lastValue = !lastValue;
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                MessageBox.Show(ex.TargetSite.ToString());
+                    MessageBox.Show(ex.TargetSite.ToString());
+                }
             }
-
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Parent.Controls.Remove(this);
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            try
+            {
+
+                button1.Text = NameTextBox.Text;
+                mPos = Convert.ToInt16(PositionTextBox.Text);
+                mBit = Convert.ToInt16(BitComboBox.Text);
+                mDatatype = datatypeToolStripMenuItem.Text;
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void stinkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (stink)
+            { 
+                stinkToolStripMenuItem.Text = "Disable stink";
+            }
+            else
+            {
+                stinkToolStripMenuItem.Text = "Enable stink";
+            }
+            stink = !stink;
+        }
+
+        private void propertesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Area : {mArea} \nDatatype : {mDatatype} \nPosition: {mPos} \nBit: {mBit}");
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            NameTextBox.Text = button1.Text;
+            AreaComboBox.Text = mArea;
+            DatatypeComboBox.Text = mDatatype;
+            PositionTextBox.Text = mPos.ToString();
+            BitComboBox.Text = mBit.ToString();
+
         }
     }
 }
