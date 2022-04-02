@@ -93,11 +93,11 @@
     <Compile Include="label.Designer.cs">
       <DependentUpon>label.cs</DependentUpon>
     </Compile>
-    <Compile Include="VerticalTrackBar.cs">
+    <Compile Include="VTrackBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VerticalTrackBar.Designer.cs">
-      <DependentUpon>VerticalTrackBar.cs</DependentUpon>
+    <Compile Include="VTrackBar.Designer.cs">
+      <DependentUpon>VTrackBar.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="button.resx">
       <DependentUpon>button.cs</DependentUpon>
@@ -126,8 +126,8 @@
     <EmbeddedResource Include="label.resx">
       <DependentUpon>label.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VerticalTrackBar.resx">
-      <DependentUpon>VerticalTrackBar.cs</DependentUpon>
+    <EmbeddedResource Include="VTrackBar.resx">
+      <DependentUpon>VTrackBar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

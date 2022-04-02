@@ -19,10 +19,13 @@ namespace Sharp7Form2
         private bool connected = false;
         private S7Driver driver;
         private S7Client.S7CpuInfo cpu;
+
+        public System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public Form1()
         {
             InitializeComponent();
             driver = new S7Driver();
+            statusLabel = toolStripStatusLabel1;
         } 
 
         /// <summary>
@@ -34,7 +37,6 @@ namespace Sharp7Form2
         {
             if (connected)
             {
-                //client.Disconnect();
                 cnnDisBtn.Text = "Connect";
                 toolStripStatusLabel1.Text = "Disconnected";
             }
@@ -77,7 +79,13 @@ namespace Sharp7Form2
         {
             configDialog configForm = new configDialog(true);
             configForm.Show();
-            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_trackbar);
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Htrackbar);
+        }
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            configDialog configForm = new configDialog(true);
+            configForm.Show();
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Vtrackbar);
         }
 
         private void buttonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,7 +100,6 @@ namespace Sharp7Form2
             configDialog configForm = new configDialog(false);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_label);
-          
         }
 
         private void configDialogClosed_button(object sender, FormClosedEventArgs e)
@@ -115,14 +122,24 @@ namespace Sharp7Form2
             }
 
         }
-        private void configDialogClosed_trackbar(object sender, FormClosedEventArgs e)
+        private void configDialogClosed_Htrackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
             if (config.DialogResult == DialogResult.OK)
             {
-                HTrackBar trb = new HTrackBar(driver, config.name, config.dataType, config.maxRange, config.area, config.pos, config.bit);
+                HTrackBar trb = new HTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit);
                 panel1.Controls.Add(trb);
             }
         }
+        private void configDialogClosed_Vtrackbar(object sender, FormClosedEventArgs e)
+        {
+            configDialog config = sender as configDialog;
+            if (config.DialogResult == DialogResult.OK)
+            {
+                VTrackBar trb = new VTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit);
+                panel1.Controls.Add(trb);
+            }
+        }
+
     }
 }

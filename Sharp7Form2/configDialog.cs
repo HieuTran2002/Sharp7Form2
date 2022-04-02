@@ -17,22 +17,22 @@ namespace Sharp7Form2
         public string area;
         public int pos;
         public int bit;
-        public int maxRange;
-        private bool isReturnMaxRange;
+        public int max;
+        public int min;
+        private bool ReturnValueRange;
         
-        public configDialog(bool returnMaxRange)
+        public configDialog(bool isReturnValueRange)
         {
             InitializeComponent();
 
             button1.DialogResult = DialogResult.OK;
             button2.DialogResult = DialogResult.Cancel;
-
+            
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
-            textBox2.Text = "60";
-            isReturnMaxRange = returnMaxRange;
-            if (!isReturnMaxRange)
+            ReturnValueRange = isReturnValueRange;
+            if (!ReturnValueRange)
             {
                 label4.Visible = false;
                 textBox3.Visible = false;
@@ -54,9 +54,10 @@ namespace Sharp7Form2
                 area = comboBox2.Text;
                 pos = Convert.ToInt16(textBox2.Text);
                 bit = Convert.ToInt16(comboBox3.Text);
-                if (isReturnMaxRange)
+                if (ReturnValueRange)
                 {
-                    maxRange = Convert.ToInt16(textBox3.Text);
+                    max = Convert.ToInt16(textBox3.Text);
+                    min = Convert.ToInt16(textBox4.Text);
                 }
                 this.Close();
 
@@ -70,13 +71,23 @@ namespace Sharp7Form2
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
 
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }

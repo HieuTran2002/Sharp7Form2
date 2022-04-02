@@ -1,21 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sharp7;
 
 namespace Sharp7Form2
 {
-    public partial class HTrackBar : UserControl
+    public partial class VTrackBar : UserControl
     {
+
         private Point MouseDownLocation;
         private string mDatatype;
         private string mArea;
         private int mPos;
         private int mBit;
         private S7Driver driver;
-        
 
-        public HTrackBar(S7Driver c, string name, string datatype, int max, int min, string area, int pos, int bit)
+        public VTrackBar(S7Driver c, string name, string datatype, int max, int min, string area, int pos, int bit)
         {
             InitializeComponent();
             label1.Text = name;
@@ -28,30 +33,31 @@ namespace Sharp7Form2
             trackBar1.Minimum = min;
         }
 
-        public void showEdit()
-        {
-            this.BackColor = Color.White;
-        }
-
-        public void closeEdit()
-        {
-            this.BackColor = ColorTranslator.FromHtml("#90ADC6");
-        }
-
-        private void trackBar1_ValueChanged(object sender, System.EventArgs e)
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             try
             {
                 int writeResult = driver.client.Write(trackBar1.Value.ToString(), mDatatype, mArea, mPos, mBit);
                 if (writeResult != 0)
                 {
-                    throw new Exception(driver.client.ErrorText(writeResult));
+                    throw new Exception((driver.client.ErrorText(writeResult)));
                 }
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                throw ex;
+            }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                MouseDownLocation = e.Location;
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
             }
         }
 
@@ -67,18 +73,6 @@ namespace Sharp7Form2
                 {
                     this.Top = e.Y + this.Top - MouseDownLocation.Y;
                 }
-            }
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                MouseDownLocation = e.Location;
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
             }
         }
 
@@ -116,8 +110,7 @@ namespace Sharp7Form2
             mBit = Convert.ToInt16(BitComboBox.Text);
             mDatatype = DatatypeComboBox.Text;
             trackBar1.Maximum = Convert.ToInt16(maxTextBox.Text);
-            trackBar1.Minimum =  Convert.ToInt16(minTextBox.Text);
- 
+            trackBar1.Minimum = Convert.ToInt16(minTextBox.Text);
         }
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
@@ -129,6 +122,26 @@ namespace Sharp7Form2
             BitComboBox.Text = mBit.ToString();
             maxTextBox.Text = trackBar1.Maximum.ToString();
             minTextBox.Text = trackBar1.Minimum.ToString();
+        }
+
+        private void minTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                MouseDownLocation = e.Location;
+            }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
         }
 
         private void label1_MouseMove(object sender, MouseEventArgs e)
@@ -143,27 +156,6 @@ namespace Sharp7Form2
                 {
                     this.Top = e.Y + this.Top - MouseDownLocation.Y;
                 }
-            }
-        }
-
-        private void label1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                MouseDownLocation = e.Location;
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            }
-
-        }
-
-        private void minTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
 
         }

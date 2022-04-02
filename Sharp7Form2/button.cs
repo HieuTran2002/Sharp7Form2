@@ -114,11 +114,15 @@ namespace Sharp7Form2
                     {
                         lastValue = !lastValue;
                     }
+                    else
+                    {
+                        throw new Exception(driver.client.ErrorText(result));
+                    }
                 }
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(ex.TargetSite.ToString());
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -127,22 +131,16 @@ namespace Sharp7Form2
         {
             Parent.Controls.Remove(this);
         }
-
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
             try
             {
-
                 button1.Text = NameTextBox.Text;
+                mArea = areaToolStripMenuItem.Text;
                 mPos = Convert.ToInt16(PositionTextBox.Text);
                 mBit = Convert.ToInt16(BitComboBox.Text);
                 mDatatype = datatypeToolStripMenuItem.Text;
-
             }
             catch (Exception)
             {
@@ -172,9 +170,13 @@ namespace Sharp7Form2
         {
             NameTextBox.Text = button1.Text;
             AreaComboBox.Text = mArea;
-            DatatypeComboBox.Text = mDatatype;
+            DatatypeComboBox.Text = "Bit";
             PositionTextBox.Text = mPos.ToString();
             BitComboBox.Text = mBit.ToString();
+        }
+
+        private void PositionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
         }
     }
