@@ -14,7 +14,6 @@ namespace Sharp7Form2
 {
     public partial class label : UserControl
     {
-        private byte[] buffer;
         private Point MouseDownLocation;
         private string mDatatype;
         private string mArea;
@@ -84,6 +83,37 @@ namespace Sharp7Form2
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Parent.Controls.Remove(this);
+        }
+
+        private void PositionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void propertesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Area : {mArea} \nDatatype : {mDatatype} \nPosition: {mPos} \nBit: {mBit}");
+        }
+
+        private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            label1.Text = NameTextBox.Text;
+            mPos = Convert.ToInt16(PositionTextBox.Text);
+            mArea = AreaComboBox.Text;
+            mBit = Convert.ToInt16(BitComboBox.Text);
+            mDatatype = DatatypeComboBox.Text;
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            NameTextBox.Text = label1.Text;
+            AreaComboBox.Text = mArea;
+            DatatypeComboBox.Text = mDatatype;
+            PositionTextBox.Text = mPos.ToString();
+            BitComboBox.Text = mBit.ToString();
         }
     }
 }

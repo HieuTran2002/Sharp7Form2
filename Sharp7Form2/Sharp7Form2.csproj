@@ -93,6 +93,12 @@
     <Compile Include="label.Designer.cs">
       <DependentUpon>label.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProgressBar.Designer.cs">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="VTrackBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="label.resx">
       <DependentUpon>label.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressBar.resx">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VTrackBar.resx">
       <DependentUpon>VTrackBar.cs</DependentUpon>

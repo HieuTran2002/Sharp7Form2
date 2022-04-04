@@ -137,10 +137,10 @@ namespace Sharp7Form2
             try
             {
                 button1.Text = NameTextBox.Text;
-                mArea = areaToolStripMenuItem.Text;
+                mArea = AreaComboBox.Text;
                 mPos = Convert.ToInt16(PositionTextBox.Text);
                 mBit = Convert.ToInt16(BitComboBox.Text);
-                mDatatype = datatypeToolStripMenuItem.Text;
+                mDatatype = DatatypeComboBox.Text;
             }
             catch (Exception)
             {
@@ -177,6 +177,11 @@ namespace Sharp7Form2
 
         private void PositionTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
 
         }
     }

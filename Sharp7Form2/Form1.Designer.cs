@@ -37,6 +37,7 @@
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.processBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,17 +118,25 @@
             // buttonToolStripMenuItem
             // 
             this.buttonToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelToolStripMenuItem});
+            this.labelToolStripMenuItem,
+            this.processBarToolStripMenuItem});
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.buttonToolStripMenuItem.Text = "Read";
             // 
             // labelToolStripMenuItem
             // 
             this.labelToolStripMenuItem.Name = "labelToolStripMenuItem";
-            this.labelToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.labelToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.labelToolStripMenuItem.Text = "Label";
             this.labelToolStripMenuItem.Click += new System.EventHandler(this.labelToolStripMenuItem_Click);
+            // 
+            // processBarToolStripMenuItem
+            // 
+            this.processBarToolStripMenuItem.Name = "processBarToolStripMenuItem";
+            this.processBarToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.processBarToolStripMenuItem.Text = "Process bar";
+            this.processBarToolStripMenuItem.Click += new System.EventHandler(this.processBarToolStripMenuItem_Click);
             // 
             // writeToolStripMenuItem
             // 
@@ -135,13 +144,13 @@
             this.buttonStripMenuItem,
             this.trackbarToolStripMenuItem});
             this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.writeToolStripMenuItem.Text = "Write";
             // 
             // buttonStripMenuItem
             // 
             this.buttonStripMenuItem.Name = "buttonStripMenuItem";
-            this.buttonStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.buttonStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.buttonStripMenuItem.Text = "Button";
             this.buttonStripMenuItem.Click += new System.EventHandler(this.buttonToolStripMenuItem_Click);
             // 
@@ -151,20 +160,20 @@
             this.verticalToolStripMenuItem,
             this.horizontalToolStripMenuItem});
             this.trackbarToolStripMenuItem.Name = "trackbarToolStripMenuItem";
-            this.trackbarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.trackbarToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.trackbarToolStripMenuItem.Text = "Trackbar";
             // 
             // verticalToolStripMenuItem
             // 
             this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.verticalToolStripMenuItem.Text = "Vertical";
             this.verticalToolStripMenuItem.Click += new System.EventHandler(this.verticalToolStripMenuItem_Click);
             // 
             // horizontalToolStripMenuItem
             // 
             this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.horizontalToolStripMenuItem.Text = "Horizontal";
             this.horizontalToolStripMenuItem.Click += new System.EventHandler(this.horizontalToolStripMenuItem1_Click);
             // 
@@ -179,7 +188,7 @@
             // enableEditModeToolStripMenuItem
             // 
             this.enableEditModeToolStripMenuItem.Name = "enableEditModeToolStripMenuItem";
-            this.enableEditModeToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.enableEditModeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.enableEditModeToolStripMenuItem.Text = "Enable edit mode";
             this.enableEditModeToolStripMenuItem.Click += new System.EventHandler(this.enableEditModeToolStripMenuItem_Click);
             // 
@@ -339,6 +348,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem labelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem processBarToolStripMenuItem;
     }
 }
 

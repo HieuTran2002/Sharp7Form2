@@ -1,6 +1,6 @@
 ﻿namespace Sharp7Form2
 {
-    partial class HTrackBar
+    partial class ProgressBar
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NameTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.areaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AreaComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.nameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NameTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.datatypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DatatypeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.positionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,13 +47,33 @@
             this.maxTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.minToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.widthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.widthTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Lime;
+            this.progressBar1.Location = new System.Drawing.Point(9, 8);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(242, 36);
+            this.progressBar1.TabIndex = 0;
+            this.progressBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseDown);
+            this.progressBar1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseMove);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(257, 52);
+            this.panel1.TabIndex = 1;
             // 
             // contextMenuStrip1
             // 
@@ -67,40 +87,20 @@
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
             // propertyToolStripMenuItem
             // 
             this.propertyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nameToolStripMenuItem,
             this.areaToolStripMenuItem,
+            this.nameToolStripMenuItem,
             this.datatypeToolStripMenuItem,
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem,
             this.maxToolStripMenuItem,
-            this.minToolStripMenuItem});
+            this.minToolStripMenuItem,
+            this.widthToolStripMenuItem});
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
             this.propertyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertyToolStripMenuItem.Text = "Edit";
-            // 
-            // nameToolStripMenuItem
-            // 
-            this.nameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NameTextBox});
-            this.nameToolStripMenuItem.Name = "nameToolStripMenuItem";
-            this.nameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.nameToolStripMenuItem.Text = "Name";
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(100, 27);
             // 
             // areaToolStripMenuItem
             // 
@@ -119,6 +119,21 @@
             "M"});
             this.AreaComboBox.Name = "AreaComboBox";
             this.AreaComboBox.Size = new System.Drawing.Size(121, 28);
+            // 
+            // nameToolStripMenuItem
+            // 
+            this.nameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NameTextBox});
+            this.nameToolStripMenuItem.Name = "nameToolStripMenuItem";
+            this.nameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.nameToolStripMenuItem.Text = "Name";
+            // 
+            // NameTextBox
+            // 
+            this.NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(100, 27);
             // 
             // datatypeToolStripMenuItem
             // 
@@ -152,9 +167,9 @@
             // PositionTextBox
             // 
             this.PositionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PositionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(100, 27);
-            this.PositionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PositionTextBox_KeyPress);
             // 
             // bitToolStripMenuItem
             // 
@@ -181,18 +196,19 @@
             // 
             // maxToolStripMenuItem
             // 
+            this.maxToolStripMenuItem.CheckOnClick = true;
             this.maxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maxTextBox});
             this.maxToolStripMenuItem.Name = "maxToolStripMenuItem";
             this.maxToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.maxToolStripMenuItem.Text = "Max";
+            this.maxToolStripMenuItem.Text = "Max ";
             // 
             // maxTextBox
             // 
             this.maxTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maxTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.maxTextBox.Name = "maxTextBox";
             this.maxTextBox.Size = new System.Drawing.Size(100, 27);
-            this.maxTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxRangeTextBox_KeyPress);
             // 
             // minToolStripMenuItem
             // 
@@ -205,79 +221,78 @@
             // minTextBox
             // 
             this.minTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.minTextBox.Name = "minTextBox";
             this.minTextBox.Size = new System.Drawing.Size(100, 27);
-            this.minTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minTextBox_KeyPress);
+            // 
+            // widthToolStripMenuItem
+            // 
+            this.widthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.widthTextBox});
+            this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
+            this.widthToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.widthToolStripMenuItem.Text = "Width";
+            // 
+            // widthTextBox
+            // 
+            this.widthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.widthTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.widthTextBox.Name = "widthTextBox";
+            this.widthTextBox.Size = new System.Drawing.Size(100, 27);
+            this.widthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeToolStripMenuItem.Text = "Remove";
             // 
             // propertesToolStripMenuItem
             // 
+            this.propertesToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.propertesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.propertesToolStripMenuItem.Name = "propertesToolStripMenuItem";
             this.propertesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertesToolStripMenuItem.Text = "Propertes";
-            this.propertesToolStripMenuItem.Click += new System.EventHandler(this.propertesToolStripMenuItem_Click);
             // 
-            // trackBar1
-            // 
-            this.trackBar1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.trackBar1.Location = new System.Drawing.Point(23, 17);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(346, 56);
-            this.trackBar1.TabIndex = 0;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.trackBar1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(390, 91);
-            this.panel1.TabIndex = 2;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            // 
-            // HTrackBar
+            // ProgressBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.panel1);
-            this.Name = "HTrackBar";
-            this.Size = new System.Drawing.Size(393, 114);
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.Name = "ProgressBar";
+            this.Size = new System.Drawing.Size(260, 55);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem propertyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox NameTextBox;
         private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox AreaComboBox;
+        private System.Windows.Forms.ToolStripMenuItem nameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox NameTextBox;
         private System.Windows.Forms.ToolStripMenuItem datatypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox DatatypeComboBox;
         private System.Windows.Forms.ToolStripMenuItem positionToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox PositionTextBox;
         private System.Windows.Forms.ToolStripMenuItem bitToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox BitComboBox;
-        private System.Windows.Forms.ToolStripMenuItem propertesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maxToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox maxTextBox;
         private System.Windows.Forms.ToolStripMenuItem minToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox minTextBox;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propertesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem widthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox widthTextBox;
     }
 }

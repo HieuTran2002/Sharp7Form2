@@ -35,7 +35,10 @@ namespace Sharp7Form2
             if (!ReturnValueRange)
             {
                 label4.Visible = false;
+                label5.Visible = false;
+                textBox4.Visible = false;
                 textBox3.Visible = false;
+
             }
         }
 
@@ -48,7 +51,6 @@ namespace Sharp7Form2
         {
             try
             {
-                MessageBox.Show("closing");
                 name = textBox1.Text;
                 dataType = comboBox1.Text;
                 area = comboBox2.Text;

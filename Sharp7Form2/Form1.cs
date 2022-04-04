@@ -15,12 +15,14 @@ namespace Sharp7Form2
 {
     public partial class Form1 : Form
     {
-        private bool editable = false;
+        internal bool editable = false;
         private bool connected = false;
         private S7Driver driver;
         private S7Client.S7CpuInfo cpu;
 
         public System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        public delegate void enableEdit(bool enable);
+        enableEdit control;
         public Form1()
         {
             InitializeComponent();
@@ -73,6 +75,8 @@ namespace Sharp7Form2
         private void enableEditModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             editable = !editable;
+            control.Invoke(editable);
+
         }
 
         private void horizontalToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -100,6 +104,22 @@ namespace Sharp7Form2
             configDialog configForm = new configDialog(false);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_label);
+        }
+        private void processBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            configDialog configForm = new configDialog(true);
+            configForm.Show();
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_ProcessBar);
+        }
+
+        private void configDialogClosed_ProcessBar(object sender, FormClosedEventArgs e)
+        {
+            configDialog config = sender as configDialog;
+            if (config.DialogResult ==  DialogResult.OK)
+            {
+                ProgressBar processBar = new ProgressBar(driver, config.name, config.dataType,config.max, config.min,config.area, config.pos, config.bit);
+                panel1.Controls.Add(processBar);
+            }
         }
 
         private void configDialogClosed_button(object sender, FormClosedEventArgs e)
@@ -138,6 +158,7 @@ namespace Sharp7Form2
             {
                 VTrackBar trb = new VTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit);
                 panel1.Controls.Add(trb);
+                control += new enableEdit(trb.edit);
             }
         }
 

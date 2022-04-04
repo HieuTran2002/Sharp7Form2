@@ -18,7 +18,7 @@ namespace Sharp7Form2
         public HTrackBar(S7Driver c, string name, string datatype, int max, int min, string area, int pos, int bit)
         {
             InitializeComponent();
-            label1.Text = name;
+            //label1.Text = name;
             mDatatype = datatype;
             mArea = area;
             mPos = pos;
@@ -110,7 +110,7 @@ namespace Sharp7Form2
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            label1.Text = NameTextBox.Text;
+            //label1.Text = NameTextBox.Text;
             mPos = Convert.ToInt16(PositionTextBox.Text);
             mArea = AreaComboBox.Text;
             mBit = Convert.ToInt16(BitComboBox.Text);
@@ -122,7 +122,7 @@ namespace Sharp7Form2
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
         {
-            NameTextBox.Text = label1.Text;
+            //NameTextBox.Text = label1.Text;
             AreaComboBox.Text = mArea;
             DatatypeComboBox.Text = mDatatype;
             PositionTextBox.Text = mPos.ToString();
