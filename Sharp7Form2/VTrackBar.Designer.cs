@@ -45,8 +45,6 @@
             this.maxTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.minToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.heightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.heightStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -75,8 +73,7 @@
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem,
             this.maxToolStripMenuItem,
-            this.minToolStripMenuItem,
-            this.heightToolStripMenuItem});
+            this.minToolStripMenuItem});
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
             this.propertyToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.propertyToolStripMenuItem.Text = "Edit";
@@ -176,7 +173,6 @@
             // 
             // maxToolStripMenuItem
             // 
-            this.maxToolStripMenuItem.CheckOnClick = true;
             this.maxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maxTextBox});
             this.maxToolStripMenuItem.Name = "maxToolStripMenuItem";
@@ -207,22 +203,6 @@
             this.minTextBox.Size = new System.Drawing.Size(100, 27);
             this.minTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minTextBox_KeyPress);
             // 
-            // heightToolStripMenuItem
-            // 
-            this.heightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.heightStripTextBox});
-            this.heightToolStripMenuItem.Name = "heightToolStripMenuItem";
-            this.heightToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
-            this.heightToolStripMenuItem.Text = "Height";
-            // 
-            // heightStripTextBox
-            // 
-            this.heightStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.heightStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.heightStripTextBox.Name = "heightStripTextBox";
-            this.heightStripTextBox.Size = new System.Drawing.Size(100, 27);
-            this.heightStripTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
-            // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
@@ -246,8 +226,9 @@
             this.trackBar1.Location = new System.Drawing.Point(0, 0);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(120, 326);
+            this.trackBar1.Size = new System.Drawing.Size(50, 326);
             this.trackBar1.TabIndex = 1;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseDown);
             this.trackBar1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseMove);
             this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
@@ -260,10 +241,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.trackBar1);
             this.Name = "VTrackBar";
-            this.Size = new System.Drawing.Size(120, 326);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VTrackBar_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.VTrackBar_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VTrackBar_MouseUp);
+            this.Size = new System.Drawing.Size(50, 326);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
@@ -290,8 +268,6 @@
         private System.Windows.Forms.ToolStripTextBox maxTextBox;
         private System.Windows.Forms.ToolStripMenuItem minToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox minTextBox;
-        private System.Windows.Forms.ToolStripMenuItem heightToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox heightStripTextBox;
         private System.Windows.Forms.TrackBar trackBar1;
     }
 }

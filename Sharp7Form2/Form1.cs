@@ -22,7 +22,7 @@ namespace Sharp7Form2
 
         public System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public delegate void enableEdit(bool enable);
-        enableEdit control;
+        enableEdit myDelegate;
         public Form1()
         {
             InitializeComponent();
@@ -75,8 +75,18 @@ namespace Sharp7Form2
         private void enableEditModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             editable = !editable;
-            control.Invoke(editable);
-
+            if (editable)
+            {
+                enableEditModeToolStripMenuItem.Text = "Disable edit mode";
+            }
+            if (!editable)
+            {
+                enableEditModeToolStripMenuItem.Text = "Enable edit mode";
+            }
+            if (panel1.Controls.Count != 0)
+            {
+            myDelegate.Invoke(editable);
+            }
         }
 
         private void horizontalToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -147,8 +157,9 @@ namespace Sharp7Form2
             configDialog config = sender as configDialog;
             if (config.DialogResult == DialogResult.OK)
             {
-                HTrackBar trb = new HTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit);
+                HTrackBar trb = new HTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(trb);
+                myDelegate += new enableEdit(trb.edit);
             }
         }
         private void configDialogClosed_Vtrackbar(object sender, FormClosedEventArgs e)
@@ -156,9 +167,9 @@ namespace Sharp7Form2
             configDialog config = sender as configDialog;
             if (config.DialogResult == DialogResult.OK)
             {
-                VTrackBar trb = new VTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit);
+                VTrackBar trb = new VTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(trb);
-                control += new enableEdit(trb.edit);
+                myDelegate += new enableEdit(trb.edit);
             }
         }
 
