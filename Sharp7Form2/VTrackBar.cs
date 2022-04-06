@@ -12,19 +12,17 @@ namespace Sharp7Form2
 {
     public partial class VTrackBar : UserControl
     {
-        internal bool editable;
+        private S7Driver driver;
         private string mDatatype;
-        private Point MouseDownLocation;
         private string mArea;
         private int mPos;
         private int mBit;
-        private S7Driver driver;
 
-        //private bool isResize;
-        //private bool isMove;
         private bool isResizing;
         private bool isMoving;
+        internal bool editable;
         private Size ControlStartSize;
+        private Point MouseDownLocation;
 
         internal static bool MouseIsInLeftEdge { get; set; }
         internal static bool MouseIsInRightEdge { get; set; }
@@ -70,17 +68,20 @@ namespace Sharp7Form2
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            try
+            if (!editable)
             {
-                int writeResult = driver.client.Write(trackBar1.Value.ToString(), mDatatype, mArea, mPos, mBit);
-                if (writeResult != 0)
+                try
                 {
-                    throw new Exception((driver.client.ErrorText(writeResult)));
+                    int writeResult = driver.client.Write(trackBar1.Value.ToString(), mDatatype, mArea, mPos, mBit);
+                    if (writeResult != 0)
+                    {
+                        throw new Exception((driver.client.ErrorText(writeResult)));
+                    }
                 }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -151,10 +152,6 @@ namespace Sharp7Form2
 
         private void updateMouseEdgeProperties(Point mouseLocationInControl)
         {
-            if (workMode == moveOrResize.Move)
-            {
-                return;
-            }
             MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
             MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
             MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
@@ -163,10 +160,6 @@ namespace Sharp7Form2
 
         private void updateMouseCursor()
         {
-            if (workMode == moveOrResize.Move)
-            {
-                return;
-            }
             if (MouseIsInLeftEdge)
             {
                 if (MouseIsInTopEdge)
@@ -206,7 +199,6 @@ namespace Sharp7Form2
                 Cursor = Cursors.Default;
             }
         }
-
         private void stopDragOrResizing()
         {
             isResizing = false;
@@ -214,6 +206,7 @@ namespace Sharp7Form2
             trackBar1.Capture = false;
             updateMouseCursor();
         }
+
 
         private void trackBar1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -294,11 +287,14 @@ namespace Sharp7Form2
                     }
                 }
             }
+            else
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         private void trackBar1_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
@@ -307,23 +303,22 @@ namespace Sharp7Form2
             if (editable)
             {
 
-            if (isMoving || isResizing)
-            {
-                return;
-            }
-            if (workMode != moveOrResize.Move &&
-                (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge))
-            {
-                isResizing = true;
-                ControlStartSize = Size;
-            }
-            else if (workMode != moveOrResize.Resize)
-            {
-                isMoving = true;
-                Cursor = Cursors.Hand;
-            }
-            MouseDownLocation = new Point(e.X, e.Y);
-            this.trackBar1.Capture = true;
+                if (isMoving || isResizing)
+                {
+                    return;
+                }
+                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
+                {
+                    isResizing = true;
+                    ControlStartSize = Size;
+                }
+                else
+                {
+                    isMoving = true;
+                    Cursor = Cursors.Hand;
+                }
+                MouseDownLocation = new Point(e.X, e.Y);
+                this.trackBar1.Capture = true;
             }
 
         }

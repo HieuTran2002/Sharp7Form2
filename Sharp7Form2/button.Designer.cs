@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.stinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,36 +45,25 @@
             this.bitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BitComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.propertesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(96, 65);
-            this.panel1.TabIndex = 0;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // button1
             // 
             this.button1.AutoSize = true;
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(112)))), ((int)(((byte)(41)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(3, 23);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 37);
+            this.button1.Size = new System.Drawing.Size(163, 75);
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
+            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button1_MouseMove);
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
             // 
             // contextMenuStrip1
@@ -87,21 +75,21 @@
             this.propertyToolStripMenuItem,
             this.propertesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 100);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
             // stinkToolStripMenuItem
             // 
             this.stinkToolStripMenuItem.Name = "stinkToolStripMenuItem";
-            this.stinkToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.stinkToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.stinkToolStripMenuItem.Text = "Enable stink";
             this.stinkToolStripMenuItem.Click += new System.EventHandler(this.stinkToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -114,7 +102,7 @@
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem});
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.propertyToolStripMenuItem.Text = "Edit";
             // 
             // nameToolStripMenuItem
@@ -176,7 +164,7 @@
             this.positionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PositionTextBox});
             this.positionToolStripMenuItem.Name = "positionToolStripMenuItem";
-            this.positionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.positionToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.positionToolStripMenuItem.Text = "Position";
             // 
             // PositionTextBox
@@ -213,7 +201,7 @@
             // propertesToolStripMenuItem
             // 
             this.propertesToolStripMenuItem.Name = "propertesToolStripMenuItem";
-            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.propertesToolStripMenuItem.Text = "Propertes";
             this.propertesToolStripMenuItem.Click += new System.EventHandler(this.propertesToolStripMenuItem_Click);
             // 
@@ -221,12 +209,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button1);
             this.Name = "button";
-            this.Size = new System.Drawing.Size(100, 69);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Size = new System.Drawing.Size(163, 75);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -234,8 +219,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem propertyToolStripMenuItem;

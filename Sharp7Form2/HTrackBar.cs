@@ -148,13 +148,12 @@ namespace Sharp7Form2
                 {
                     return;
                 }
-                if (workMode != moveOrResize.Move &&
-                    (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge))
+                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
                 {
                     isResizing = true;
                     ControlStartSize = Size;
                 }
-                else if (workMode != moveOrResize.Resize)
+                else
                 {
                     isMoving = true;
                     Cursor = Cursors.Hand;
@@ -243,6 +242,10 @@ namespace Sharp7Form2
                         this.Top = e.Y + this.Top - MouseDownLocation.Y;
                     }
                 }
+            }
+            else
+            {
+                Cursor = Cursors.Default;
             }
 
         }

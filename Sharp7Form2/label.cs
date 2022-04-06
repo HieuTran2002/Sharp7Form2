@@ -54,13 +54,86 @@ namespace Sharp7Form2
 
         private void label1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (editable)
             {
-                MouseDownLocation = e.Location;
+
+                if (!isResizing && !isMoving)
+                {
+                    updateMouseEdgeProperties(new Point(e.X, e.Y));
+                    updateMouseCursor();
+                }
+
+                if (isResizing)
+                {
+                    if (MouseIsInLeftEdge)
+                    {
+                        if (MouseIsInTopEdge)
+                        {
+                            Width -= (e.X - MouseDownLocation.X);
+                            Left += (e.X - MouseDownLocation.X);
+                            Height -= (e.Y - MouseDownLocation.Y);
+                            Top += (e.Y - MouseDownLocation.Y);
+                        }
+                        else if (MouseIsInBottomEdge)
+                        {
+                            Width -= (e.X - MouseDownLocation.X);
+                            Left += (e.X - MouseDownLocation.X);
+                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
+                        }
+                        else
+                        {
+                            Width -= (e.X - MouseDownLocation.X);
+                            Left += (e.X - MouseDownLocation.X);
+                        }
+                    }
+                    else if (MouseIsInRightEdge)
+                    {
+                        if (MouseIsInTopEdge)
+                        {
+                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
+                            Height -= (e.Y - MouseDownLocation.Y);
+                            Top += (e.Y - MouseDownLocation.Y);
+
+                        }
+                        else if (MouseIsInBottomEdge)
+                        {
+                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
+                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
+                        }
+                        else
+                        {
+                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
+                        }
+                    }
+                    else if (MouseIsInTopEdge)
+                    {
+                        Height -= (e.Y - MouseDownLocation.Y);
+                        Top += (e.Y - MouseDownLocation.Y);
+                    }
+                    else if (MouseIsInBottomEdge)
+                    {
+                        Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
+                    }
+                    else
+                    {
+                        stopDragOrResizing();
+                    }
+                }
+                else if (isMoving)
+                {
+                    if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < Parent.Width)
+                    {
+                        this.Left = e.X + this.Left - MouseDownLocation.X;
+                    }
+                    if (this.Top + (e.Y - MouseDownLocation.Y) > 0 && this.Bottom + (e.Y - MouseDownLocation.Y) < Parent.Height)
+                    {
+                        this.Top = e.Y + this.Top - MouseDownLocation.Y;
+                    }
+                }
             }
-            else if (e.Button == MouseButtons.Right)
+            else
             {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+                Cursor = Cursors.Default;
             }
         }
 
@@ -114,6 +187,11 @@ namespace Sharp7Form2
             DatatypeComboBox.Text = mDatatype;
             PositionTextBox.Text = mPos.ToString();
             BitComboBox.Text = mBit.ToString();
+        }
+
+        private void label1_MouseUp(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

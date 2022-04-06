@@ -83,9 +83,9 @@ namespace Sharp7Form2
             {
                 enableEditModeToolStripMenuItem.Text = "Enable edit mode";
             }
-            if (panel1.Controls.Count != 0)
+            if (myDelegate != null)
             {
-            myDelegate.Invoke(editable);
+                myDelegate.Invoke(editable);
             }
         }
 
@@ -137,8 +137,9 @@ namespace Sharp7Form2
             configDialog config = sender as configDialog;
             if (config.DialogResult ==  DialogResult.OK)
             {
-                button btn = new button(driver, config.name, config.dataType, config.area, config.pos, config.bit);
+                button btn = new button(driver, config.name, config.dataType, config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(btn);
+                myDelegate += new enableEdit(btn.edit);
             }
         }
 
