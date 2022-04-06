@@ -12,6 +12,7 @@ namespace Sharp7Form2
 {
     public partial class button : UserControl
     {
+        #region Initialze variables
         internal bool editable;
         private string mDatatype;
         private Point MouseDownLocation;
@@ -34,6 +35,18 @@ namespace Sharp7Form2
         internal static bool MouseIsInTopEdge { get; set; }
         internal static bool MouseIsInBottomEdge { get; set; }
 
+        #endregion
+
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="name"></param>
+        /// <param name="datatype"></param>
+        /// <param name="area"></param>
+        /// <param name="pos"></param>
+        /// <param name="bit"></param>
+        /// <param name="currentEditMode"></param>
         public button(S7Driver c, string name, string datatype, string area, int pos, int bit, bool currentEditMode)
         {
             InitializeComponent();
@@ -49,7 +62,7 @@ namespace Sharp7Form2
 
         }
 
-
+        #region UI event handler
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Parent.Controls.Remove(this);
@@ -104,17 +117,14 @@ namespace Sharp7Form2
             {
                 e.Handled = true;
             }
-
-
         }
+
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
             }
-            
-
                 if (editable)
                 {
 
@@ -135,7 +145,6 @@ namespace Sharp7Form2
                     MouseDownLocation = new Point(e.X, e.Y);
                     this.button1.Capture = true;
                 }
-
             else
             {
                 if (stink)
@@ -150,10 +159,8 @@ namespace Sharp7Form2
                     }
                     catch (Exception ex)
                     {
-
                         MessageBox.Show(ex.TargetSite.ToString());
                     }
-
                 }
                 else
                 {
@@ -204,11 +211,9 @@ namespace Sharp7Form2
             }
         }
 
-
         private void button1_MouseMove(object sender, MouseEventArgs e)
         {
-            button1.Text = Cursor.Current.ToString();
-            if (editable)
+            if(editable)
             {
 
                 if (!isResizing && !isMoving)
@@ -291,6 +296,9 @@ namespace Sharp7Form2
             }
 
         }
+        #endregion
+
+        #region Method
         private void updateMouseEdgeProperties(Point mouseLocationInControl)
         {
             MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
@@ -340,6 +348,7 @@ namespace Sharp7Form2
                 Cursor = Cursors.Default;
             }
         }
+
         private void stopDragOrResizing()
         {
             isResizing = false;
@@ -353,6 +362,8 @@ namespace Sharp7Form2
         {
             editable = enableEdit;
         }
+
+        #endregion
 
     }
 }

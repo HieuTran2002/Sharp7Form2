@@ -12,6 +12,7 @@ namespace Sharp7Form2
 {
     public partial class VTrackBar : UserControl
     {
+        #region Initialize variables
         private S7Driver driver;
         private string mDatatype;
         private string mArea;
@@ -28,7 +29,9 @@ namespace Sharp7Form2
         internal static bool MouseIsInRightEdge { get; set; }
         internal static bool MouseIsInTopEdge { get; set; }
         internal static bool MouseIsInBottomEdge { get; set; }
+        internal static moveOrResize workMode { get; set; }
 
+        #endregion
 
         internal enum moveOrResize
         {
@@ -36,7 +39,6 @@ namespace Sharp7Form2
             Resize,
             MoveAndResize
         }
-        internal static moveOrResize workMode { get; set; }
 
 
         /// <summary>
@@ -64,8 +66,11 @@ namespace Sharp7Form2
             trackBar1.Maximum = max;
             trackBar1.Minimum = min;
             workMode = moveOrResize.MoveAndResize;
+            editable = currentEditMode;
         }
 
+
+        #region UI event handler
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             if (!editable)
@@ -140,73 +145,6 @@ namespace Sharp7Form2
             maxTextBox.Text = trackBar1.Maximum.ToString();
             minTextBox.Text = trackBar1.Minimum.ToString();
         }
-
-
-        private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void updateMouseEdgeProperties(Point mouseLocationInControl)
-        {
-            MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
-            MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
-            MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
-            MouseIsInBottomEdge = Math.Abs(mouseLocationInControl.Y - Height) <= 2;
-        }
-
-        private void updateMouseCursor()
-        {
-            if (MouseIsInLeftEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInRightEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInTopEdge || MouseIsInBottomEdge)
-            {
-                Cursor = Cursors.SizeNS;
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-        private void stopDragOrResizing()
-        {
-            isResizing = false;
-            isMoving = false;
-            trackBar1.Capture = false;
-            updateMouseCursor();
-        }
-
 
         private void trackBar1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -328,6 +266,78 @@ namespace Sharp7Form2
             stopDragOrResizing();
         }
 
+        #endregion 
+
+        #region method
+
+        /// <summary>
+        /// Check if mouse is in conners
+        /// </summary>
+        /// <param name="mouseLocationInControl"></param>
+        private void updateMouseEdgeProperties(Point mouseLocationInControl)
+        {
+            MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
+            MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
+            MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
+            MouseIsInBottomEdge = Math.Abs(mouseLocationInControl.Y - Height) <= 2;
+        }
+
+        /// <summary>
+        /// Update current mouse state
+        /// </summary>
+        private void updateMouseCursor()
+        {
+            if (MouseIsInLeftEdge)
+            {
+                if (MouseIsInTopEdge)
+                {
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else if (MouseIsInBottomEdge)
+                {
+                    Cursor = Cursors.SizeNESW;
+                }
+                else
+                {
+                    Cursor = Cursors.SizeWE;
+                }
+            }
+            else if (MouseIsInRightEdge)
+            {
+                if (MouseIsInTopEdge)
+                {
+                    Cursor = Cursors.SizeNESW;
+                }
+                else if (MouseIsInBottomEdge)
+                {
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else
+                {
+                    Cursor = Cursors.SizeWE;
+                }
+            }
+            else if (MouseIsInTopEdge || MouseIsInBottomEdge)
+            {
+                Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Stop drag/drop 
+        /// </summary>
+        private void stopDragOrResizing()
+        {
+            isResizing = false;
+            isMoving = false;
+            trackBar1.Capture = false;
+            updateMouseCursor();
+        }
+
         /// <summary>
         /// turn on/off edit mode
         /// </summary>
@@ -336,5 +346,7 @@ namespace Sharp7Form2
         {
             editable = enableEdit;
         }
+
+        #endregion
     }
 }

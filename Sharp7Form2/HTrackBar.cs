@@ -7,6 +7,7 @@ namespace Sharp7Form2
 {
     public partial class HTrackBar : UserControl
     {
+        #region Initialize variables
         internal bool editable;
         private string mDatatype;
         private string mArea;
@@ -25,7 +26,9 @@ namespace Sharp7Form2
         internal static bool MouseIsInRightEdge { get; set; }
         internal static bool MouseIsInTopEdge { get; set; }
         internal static bool MouseIsInBottomEdge { get; set; }
+        internal static moveOrResize workMode { get; set; }
 
+        #endregion
 
         internal enum moveOrResize
         {
@@ -33,9 +36,20 @@ namespace Sharp7Form2
             Resize,
             MoveAndResize
         }
-        internal static moveOrResize workMode { get; set; }
 
 
+        /// <summary>
+        /// contructor
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="name"></param>
+        /// <param name="datatype"></param>
+        /// <param name="max"></param>
+        /// <param name="min"></param>
+        /// <param name="area"></param>
+        /// <param name="pos"></param>
+        /// <param name="bit"></param>
+        /// <param name="currentEditMode"></param>
         public HTrackBar(S7Driver c, string name, string datatype, int max, int min, string area, int pos, int bit, bool currentEditMode)
         {
             InitializeComponent();
@@ -51,12 +65,8 @@ namespace Sharp7Form2
             workMode = moveOrResize.MoveAndResize;
         }
 
-        public void edit(bool enableEdit)
-        {
-            editable = enableEdit;
-        }
 
-
+        #region UI event handler
         private void trackBar1_ValueChanged(object sender, System.EventArgs e)
         {
             try
@@ -73,7 +83,6 @@ namespace Sharp7Form2
                 throw ex;
             }
         }
-
        
         private void propertesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -124,7 +133,6 @@ namespace Sharp7Form2
             minTextBox.Text = trackBar1.Minimum.ToString();
         }
 
-        
         private void minTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -256,12 +264,12 @@ namespace Sharp7Form2
 
         }
 
+        #endregion
+
+
+        #region method
         private void updateMouseEdgeProperties(Point mouseLocationInControl)
         {
-            if (workMode == moveOrResize.Move)
-            {
-                return;
-            }
             MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
             MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
             MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
@@ -270,10 +278,6 @@ namespace Sharp7Form2
 
         private void updateMouseCursor()
         {
-            if (workMode == moveOrResize.Move)
-            {
-                return;
-            }
             if (MouseIsInLeftEdge)
             {
                 if (MouseIsInTopEdge)
@@ -321,6 +325,13 @@ namespace Sharp7Form2
             trackBar1.Capture = false;
             updateMouseCursor();
         }
+
+        public void edit(bool enableEdit)
+        {
+            editable = enableEdit;
+        }
+
+        #endregion
 
     }
 }

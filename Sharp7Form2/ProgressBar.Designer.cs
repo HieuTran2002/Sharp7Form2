@@ -63,6 +63,7 @@
             this.progressBar1.TabIndex = 0;
             this.progressBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseDown);
             this.progressBar1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseMove);
+            this.progressBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseUp);
             // 
             // contextMenuStrip1
             // 
@@ -120,6 +121,7 @@
             // NameTextBox
             // 
             this.NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(100, 27);
             // 
@@ -155,6 +157,7 @@
             // PositionTextBox
             // 
             this.PositionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PositionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(100, 27);
             // 
@@ -193,6 +196,7 @@
             // maxTextBox
             // 
             this.maxTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maxTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.maxTextBox.Name = "maxTextBox";
             this.maxTextBox.Size = new System.Drawing.Size(100, 27);
             // 
@@ -207,6 +211,7 @@
             // minTextBox
             // 
             this.minTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.minTextBox.Name = "minTextBox";
             this.minTextBox.Size = new System.Drawing.Size(100, 27);
             // 
@@ -221,6 +226,7 @@
             // widthTextBox
             // 
             this.widthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.widthTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.widthTextBox.Name = "widthTextBox";
             this.widthTextBox.Size = new System.Drawing.Size(100, 27);
             this.widthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);

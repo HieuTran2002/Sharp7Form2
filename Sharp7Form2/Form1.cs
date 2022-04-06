@@ -15,6 +15,7 @@ namespace Sharp7Form2
 {
     public partial class Form1 : Form
     {
+        #region Initialize variables
         internal bool editable = false;
         private bool connected = false;
         private S7Driver driver;
@@ -23,18 +24,15 @@ namespace Sharp7Form2
         public System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public delegate void enableEdit(bool enable);
         enableEdit myDelegate;
+        #endregion
         public Form1()
         {
             InitializeComponent();
             driver = new S7Driver();
             statusLabel = toolStripStatusLabel1;
-        } 
+        }
 
-        /// <summary>
-        /// ConnBTN clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        #region UI event handler
         private void button1_Click(object sender, EventArgs e)
         {
             if (connected)
@@ -71,7 +69,6 @@ namespace Sharp7Form2
             }
         }
 
-
         private void enableEditModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             editable = !editable;
@@ -95,6 +92,7 @@ namespace Sharp7Form2
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Htrackbar);
         }
+
         private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             configDialog configForm = new configDialog(true);
@@ -115,6 +113,7 @@ namespace Sharp7Form2
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_label);
         }
+
         private void processBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             configDialog configForm = new configDialog(true);
@@ -122,13 +121,21 @@ namespace Sharp7Form2
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_ProcessBar);
         }
 
+        private void lEDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            configDialog configForm = new configDialog(false);
+            configForm.Show();
+            configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Panel);
+        }
+
         private void configDialogClosed_ProcessBar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
             if (config.DialogResult ==  DialogResult.OK)
             {
-                ProgressBar processBar = new ProgressBar(driver, config.name, config.dataType,config.max, config.min,config.area, config.pos, config.bit);
+                ProgressBar processBar = new ProgressBar(driver, config.name, config.dataType,config.max, config.min,config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(processBar);
+                myDelegate += new enableEdit(processBar.edit);
             }
         }
 
@@ -148,11 +155,13 @@ namespace Sharp7Form2
             configDialog config = sender as configDialog;
             if (config.DialogResult ==  DialogResult.OK)
             {
-                label lb = new label(driver, config.name, config.dataType, config.area, config.pos, config.bit);
+                label lb = new label(driver, config.name, config.dataType, config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(lb);
+                myDelegate += new enableEdit(lb.edit);
             }
 
         }
+
         private void configDialogClosed_Htrackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
@@ -163,6 +172,7 @@ namespace Sharp7Form2
                 myDelegate += new enableEdit(trb.edit);
             }
         }
+
         private void configDialogClosed_Vtrackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
@@ -174,5 +184,17 @@ namespace Sharp7Form2
             }
         }
 
+        private void configDialogClosed_Panel(object sender, FormClosedEventArgs e)
+        {
+            configDialog config = sender as configDialog;
+            if (config.DialogResult == DialogResult.OK)
+            {
+                panel pn = new panel(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit, editable);
+                panel1.Controls.Add(pn);
+                myDelegate += new enableEdit(pn.edit);
+            }
+
+        }
+        #endregion
     }
 }

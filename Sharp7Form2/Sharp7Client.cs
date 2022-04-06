@@ -11,19 +11,32 @@ namespace Sharp7Form2
 
     {
 
-        //#region private field
-        //#endregion
-
-        //#region public field
-
-        //#endregion
+        #region 
+        /// <summary>
+        /// Connect to PLC asynchronously
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="rank"></param>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         public async Task<int> AsyncConnectTo(string ip, int rank, int slot)
         {
             int cnnResult = await Task.Run(() => ConnectTo(ip, rank, slot));
             return cnnResult;
         }
 
+        #endregion
 
+        #region Write
+        /// <summary>
+        /// Write value to PLC, except boolean value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="datatype"></param>
+        /// <param name="area"></param>
+        /// <param name="pos"></param>
+        /// <param name="bit"></param>
+        /// <returns></returns>
         public int Write(string value, string datatype, string area, int pos, int bit)
         {
 
@@ -100,6 +113,15 @@ namespace Sharp7Form2
             }
 
         }
+
+        /// <summary>
+        /// Write boolean value to plc
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="area"></param>
+        /// <param name="pos"></param>
+        /// <param name="bit"></param>
+        /// <returns></returns>
         public int Write(bool value, string area, int pos, int bit)
         {
             if (area == "Q")
@@ -119,7 +141,16 @@ namespace Sharp7Form2
                 return 7;
             }
         }
+        #endregion
 
+        #region Read
+        /// <summary>
+        /// Read value from PLC, return string, except boolean value
+        /// </summary>
+        /// <param name="datatype"></param>
+        /// <param name="area"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public string read(string datatype, string area, int position)
         {
             byte[] buffer;
@@ -179,5 +210,35 @@ namespace Sharp7Form2
 
 
         }
+
+        /// <summary>
+        /// Read and return boolean value from PLC
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="position"></param>
+        /// <param name="bit"></param>
+        /// <returns></returns>
+        public bool read(string area, int position, int bit)
+        {
+            byte[] buffer = new byte[1];
+            int readResult = 0;
+
+            switch (area)
+            {
+                case "Q":
+                    readResult = ABRead(position, buffer.Length, buffer);
+                    break;
+                case "I":
+                    readResult = EBRead(position, buffer.Length, buffer);
+                    break;
+                case "M":
+                    readResult = MBRead(position, buffer.Length, buffer);
+                    break;
+            }
+
+            return S7.GetBitAt(buffer, 0, bit);
+        }
+        #endregion
+
     }
 }

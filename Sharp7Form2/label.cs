@@ -14,15 +14,28 @@ namespace Sharp7Form2
 {
     public partial class label : UserControl
     {
-        private Point MouseDownLocation;
+        #region Initialize variables
+        private S7Driver driver;
         private string mDatatype;
         private string mArea;
         private int mPos;
         private int mBit;
-        private S7Driver driver;
+
+        private bool isResizing;
+        private bool isMoving;
+        internal bool editable;
+        private Size ControlStartSize;
+        private Point MouseDownLocation;
+
+        internal static bool MouseIsInLeftEdge { get; set; }
+        internal static bool MouseIsInRightEdge { get; set; }
+        internal static bool MouseIsInTopEdge { get; set; }
+        internal static bool MouseIsInBottomEdge { get; set; }
 
         private System.Windows.Forms.Timer timer1;
-        public label(S7Driver c, string name, string datatype, string area, int pos, int bit)
+        #endregion
+
+        public label(S7Driver c, string name, string datatype, string area, int pos, int bit, bool currentEditMode)
         {
             InitializeComponent();
             mDatatype = datatype;
@@ -30,11 +43,11 @@ namespace Sharp7Form2
             mPos = pos;
             mBit = bit;
             driver = c;
-            timer1 = new System.Windows.Forms.Timer();
+            editable = currentEditMode; 
 
+            timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 200;
             timer1.Tick += timer1_Tick;
-
             Thread t = new Thread(() =>
             {
                 this.BeginInvoke((Action)delegate ()
@@ -47,12 +60,43 @@ namespace Sharp7Form2
 
         }
 
+        #region UI event handler
         private void timer1_Tick(object sender, EventArgs e)
         {
             label1.Text = driver.client.read(mDatatype, mArea, mPos);
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+
+            if (editable)
+            {
+
+                if (isMoving || isResizing)
+                {
+                    return;
+                }
+                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
+                {
+                    isResizing = true;
+                    ControlStartSize = Size;
+                }
+                else
+                {
+                    isMoving = true;
+                    Cursor = Cursors.Hand;
+                }
+                MouseDownLocation = new Point(e.X, e.Y);
+                this.label1.Capture = true;
+            }
+
+        }
+
+        private void label1_MouseMove(object sender, MouseEventArgs e)
         {
             if (editable)
             {
@@ -135,21 +179,6 @@ namespace Sharp7Form2
             {
                 Cursor = Cursors.Default;
             }
-        }
-
-        private void label1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < Parent.Width)
-                {
-                    this.Left = e.X + this.Left - MouseDownLocation.X;
-                }
-                if (this.Top + (e.Y - MouseDownLocation.Y) > 0 && this.Bottom + (e.Y - MouseDownLocation.Y) < Parent.Height)
-                {
-                    this.Top = e.Y + this.Top - MouseDownLocation.Y;
-                }
-            }
 
         }
 
@@ -191,7 +220,74 @@ namespace Sharp7Form2
 
         private void label1_MouseUp(object sender, MouseEventArgs e)
         {
-
+            stopDragOrResizing();
         }
+        #endregion
+
+        #region Method
+        private void updateMouseEdgeProperties(Point mouseLocationInControl)
+        {
+            MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
+            MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
+            MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
+            MouseIsInBottomEdge = Math.Abs(mouseLocationInControl.Y - Height) <= 2;
+        }
+
+        private void updateMouseCursor()
+        {
+            if (MouseIsInLeftEdge)
+            {
+                if (MouseIsInTopEdge)
+                {
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else if (MouseIsInBottomEdge)
+                {
+                    Cursor = Cursors.SizeNESW;
+                }
+                else
+                {
+                    Cursor = Cursors.SizeWE;
+                }
+            }
+            else if (MouseIsInRightEdge)
+            {
+                if (MouseIsInTopEdge)
+                {
+                    Cursor = Cursors.SizeNESW;
+                }
+                else if (MouseIsInBottomEdge)
+                {
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else
+                {
+                    Cursor = Cursors.SizeWE;
+                }
+            }
+            else if (MouseIsInTopEdge || MouseIsInBottomEdge)
+            {
+                Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void stopDragOrResizing()
+        {
+            isResizing = false;
+            isMoving = false;
+            label1.Capture = false;
+            updateMouseCursor();
+        }
+        public void edit(bool enableEdit)
+        {
+            editable = enableEdit;
+        }
+
+        #endregion
+
     }
 }

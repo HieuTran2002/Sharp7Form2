@@ -59,6 +59,12 @@
     <Compile Include="button.Designer.cs">
       <DependentUpon>button.cs</DependentUpon>
     </Compile>
+    <Compile Include="panel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panel.Designer.cs">
+      <DependentUpon>panel.cs</DependentUpon>
+    </Compile>
     <Compile Include="S7Driver.cs" />
     <Compile Include="Sharp7Client.cs" />
     <Compile Include="configDialog.cs">
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panel.resx">
+      <DependentUpon>panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
