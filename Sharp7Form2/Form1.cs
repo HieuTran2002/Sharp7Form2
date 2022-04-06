@@ -39,6 +39,7 @@ namespace Sharp7Form2
             {
                 cnnDisBtn.Text = "Connect";
                 toolStripStatusLabel1.Text = "Disconnected";
+                connected = false;
             }
             else
             {
