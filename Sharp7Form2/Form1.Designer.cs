@@ -31,13 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cnnDisBtn = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lEDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,69 +47,60 @@
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.lEDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(229)))), ((int)(((byte)(232)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(206, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(260, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(1350, 715);
+            this.panel1.Size = new System.Drawing.Size(1556, 715);
             this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label1.Location = new System.Drawing.Point(7, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Just test !";
-            // 
-            // cnnDisBtn
-            // 
-            this.cnnDisBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(54)))), ((int)(((byte)(82)))));
-            this.cnnDisBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cnnDisBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cnnDisBtn.Location = new System.Drawing.Point(14, 102);
-            this.cnnDisBtn.Name = "cnnDisBtn";
-            this.cnnDisBtn.Size = new System.Drawing.Size(170, 51);
-            this.cnnDisBtn.TabIndex = 2;
-            this.cnnDisBtn.Text = "Connect";
-            this.cnnDisBtn.UseVisualStyleBackColor = false;
-            this.cnnDisBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem,
             this.addToolStripMenuItem,
             this.editToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(206, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1350, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1556, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem1,
+            this.infoToolStripMenuItem});
+            this.connectToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.connectToolStripMenuItem.Text = "Configuration";
+            // 
+            // connectToolStripMenuItem1
+            // 
+            this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
+            this.connectToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.connectToolStripMenuItem1.Text = "Connect";
+            this.connectToolStripMenuItem1.Click += new System.EventHandler(this.connectToolStripMenuItem1_Click);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.infoToolStripMenuItem.Text = "Info";
             // 
             // addToolStripMenuItem
             // 
@@ -126,22 +119,29 @@
             this.processBarToolStripMenuItem,
             this.lEDToolStripMenuItem});
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.buttonToolStripMenuItem.Text = "Read";
             // 
             // labelToolStripMenuItem
             // 
             this.labelToolStripMenuItem.Name = "labelToolStripMenuItem";
-            this.labelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.labelToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.labelToolStripMenuItem.Text = "Label";
             this.labelToolStripMenuItem.Click += new System.EventHandler(this.labelToolStripMenuItem_Click);
             // 
             // processBarToolStripMenuItem
             // 
             this.processBarToolStripMenuItem.Name = "processBarToolStripMenuItem";
-            this.processBarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.processBarToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.processBarToolStripMenuItem.Text = "Process bar";
             this.processBarToolStripMenuItem.Click += new System.EventHandler(this.processBarToolStripMenuItem_Click);
+            // 
+            // lEDToolStripMenuItem
+            // 
+            this.lEDToolStripMenuItem.Name = "lEDToolStripMenuItem";
+            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.lEDToolStripMenuItem.Text = "LED";
+            this.lEDToolStripMenuItem.Click += new System.EventHandler(this.lEDToolStripMenuItem_Click);
             // 
             // writeToolStripMenuItem
             // 
@@ -149,7 +149,7 @@
             this.buttonStripMenuItem,
             this.trackbarToolStripMenuItem});
             this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.writeToolStripMenuItem.Text = "Write";
             // 
             // buttonStripMenuItem
@@ -203,10 +203,10 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(206, 721);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 721);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1350, 22);
-            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Size = new System.Drawing.Size(1556, 22);
+            this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
@@ -216,118 +216,15 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 16);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label2.Location = new System.Drawing.Point(1, 252);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 38);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "PLC status";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label3.Location = new System.Drawing.Point(12, 309);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 29);
-            this.label3.TabIndex = 6;
-            this.label3.Text = ".............";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label4.Location = new System.Drawing.Point(12, 357);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 29);
-            this.label4.TabIndex = 7;
-            this.label4.Text = ".............";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label5.Location = new System.Drawing.Point(12, 403);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 29);
-            this.label5.TabIndex = 8;
-            this.label5.Text = ".............";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label6.Location = new System.Drawing.Point(12, 555);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 29);
-            this.label6.TabIndex = 11;
-            this.label6.Text = ".............";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label7.Location = new System.Drawing.Point(12, 509);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 29);
-            this.label7.TabIndex = 10;
-            this.label7.Text = ".............";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.label8.Location = new System.Drawing.Point(12, 461);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 29);
-            this.label8.TabIndex = 9;
-            this.label8.Text = ".............";
-            // 
-            // splitter1
-            // 
-            this.splitter1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(206, 743);
-            this.splitter1.TabIndex = 12;
-            this.splitter1.TabStop = false;
-            // 
-            // lEDToolStripMenuItem
-            // 
-            this.lEDToolStripMenuItem.Name = "lEDToolStripMenuItem";
-            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.lEDToolStripMenuItem.Text = "LED";
-            this.lEDToolStripMenuItem.Click += new System.EventHandler(this.lEDToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(54)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1556, 743);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.cnnDisBtn);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.splitter1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -335,9 +232,9 @@
             this.Text = "Triple H";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,8 +244,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button cnnDisBtn;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buttonToolStripMenuItem;
@@ -357,22 +252,17 @@
         private System.Windows.Forms.ToolStripMenuItem trackbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableEditModeToolStripMenuItem;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem labelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem processBarToolStripMenuItem;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ToolStripMenuItem lEDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

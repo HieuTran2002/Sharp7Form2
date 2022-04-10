@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using controlManager;
 
 namespace Sharp7Form2
 {
@@ -20,16 +21,8 @@ namespace Sharp7Form2
         private int mPos;
         private int mBit;
 
-        private bool isResizing;
-        private bool isMoving;
-        internal bool editable;
-        private Size ControlStartSize;
-        private Point MouseDownLocation;
-
-        internal static bool MouseIsInLeftEdge { get; set; }
-        internal static bool MouseIsInRightEdge { get; set; }
-        internal static bool MouseIsInTopEdge { get; set; }
-        internal static bool MouseIsInBottomEdge { get; set; }
+        internal bool editMode;
+        private moveAndResize manager;
 
         private System.Windows.Forms.Timer timer1;
         #endregion
@@ -54,7 +47,10 @@ namespace Sharp7Form2
             mPos = pos;
             mBit = bit;
             driver = c;
-            editable = currentEditMode;
+            editMode = currentEditMode;
+
+            manager = new moveAndResize();
+            manager.Initialize(button1, this, editMode);
 
             timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 200;
@@ -89,194 +85,54 @@ namespace Sharp7Form2
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 
-        private void button1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            }
-
-            if (editable)
-            {
-
-                if (isMoving || isResizing)
-                {
-                    return;
-                }
-                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
-                {
-                    isResizing = true;
-                    ControlStartSize = Size;
-                }
-                else
-                {
-                    isMoving = true;
-                    Cursor = Cursors.Hand;
-                }
-                MouseDownLocation = new Point(e.X, e.Y);
-                this.button1.Capture = true;
-            }
-
-        }
-
-        private void button1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (editable)
-            {
-
-                if (!isResizing && !isMoving)
-                {
-                    updateMouseEdgeProperties(new Point(e.X, e.Y));
-                    updateMouseCursor();
-                }
-
-                if (isResizing)
-                {
-                    if (MouseIsInLeftEdge)
-                    {
-                        if (MouseIsInTopEdge)
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                            Height -= (e.Y - MouseDownLocation.Y);
-                            Top += (e.Y - MouseDownLocation.Y);
-                        }
-                        else if (MouseIsInBottomEdge)
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                        }
-                        else
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                        }
-                    }
-                    else if (MouseIsInRightEdge)
-                    {
-                        if (MouseIsInTopEdge)
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                            Height -= (e.Y - MouseDownLocation.Y);
-                            Top += (e.Y - MouseDownLocation.Y);
-
-                        }
-                        else if (MouseIsInBottomEdge)
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                        }
-                        else
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                        }
-                    }
-                    else if (MouseIsInTopEdge)
-                    {
-                        Height -= (e.Y - MouseDownLocation.Y);
-                        Top += (e.Y - MouseDownLocation.Y);
-                    }
-                    else if (MouseIsInBottomEdge)
-                    {
-                        Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                    }
-                    else
-                    {
-                        stopDragOrResizing();
-                    }
-                }
-                else if (isMoving)
-                {
-                    if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < Parent.Width)
-                    {
-                        this.Left = e.X + this.Left - MouseDownLocation.X;
-                    }
-                    if (this.Top + (e.Y - MouseDownLocation.Y) > 0 && this.Bottom + (e.Y - MouseDownLocation.Y) < Parent.Height)
-                    {
-                        this.Top = e.Y + this.Top - MouseDownLocation.Y;
-                    }
-                }
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private void button1_MouseUp(object sender, MouseEventArgs e)
-        {
-            stopDragOrResizing();
-        }
         #endregion
 
         #region Method
-        private void updateMouseEdgeProperties(Point mouseLocationInControl)
-        {
-            MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
-            MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
-            MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
-            MouseIsInBottomEdge = Math.Abs(mouseLocationInControl.Y - Height) <= 2;
-        }
-
-        private void updateMouseCursor()
-        {
-            if (MouseIsInLeftEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInRightEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInTopEdge || MouseIsInBottomEdge)
-            {
-                Cursor = Cursors.SizeNS;
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private void stopDragOrResizing()
-        {
-            isResizing = false;
-            isMoving = false;
-            button1.Capture = false;
-            updateMouseCursor();
-        }
-
         public void edit(bool enableEdit)
         {
-            editable = enableEdit;
+            editMode = enableEdit;
+            manager.changeEditMode(enableEdit);
         }
         #endregion
+
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (editMode && e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Parent.Controls.Remove(this);
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            AreaComboBox.Text = mArea;
+            DatatypeComboBox.Text = "Bit";
+            PositionTextBox.Text = mPos.ToString();
+            BitComboBox.Text = mBit.ToString();
+        }
+
+        private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            try
+            {
+                mArea = AreaComboBox.Text;
+                mPos = Convert.ToInt16(PositionTextBox.Text);
+                mBit = Convert.ToInt16(BitComboBox.Text);
+                mDatatype = DatatypeComboBox.Text;
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
     }
 }

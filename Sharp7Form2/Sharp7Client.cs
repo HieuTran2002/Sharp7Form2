@@ -47,6 +47,7 @@ namespace Sharp7Form2
                 {
                     buffer = new byte[2];
                     S7.SetIntAt(buffer, 0, Convert.ToInt16(value));
+                    S7.SetIntAt(buffer, 0, Convert.ToInt16(value));
                     return ABWrite(pos, 2, buffer);
                     //MessageBox.Show(ErrorText(result));
                 }
@@ -64,7 +65,7 @@ namespace Sharp7Form2
                 }
                 else if (datatype == "DWORD")
                 {
-                    buffer = new byte[2];
+                    buffer = new byte[4];
                     S7.SetWordAt(buffer, 0, Convert.ToUInt16(value));
                     return ABWrite(pos, 4, buffer);
                 }
@@ -173,7 +174,6 @@ namespace Sharp7Form2
                     buffer = new byte[2];
                     break;
             }
-            //buffer = new byte[100];
 
             switch (area)
             {

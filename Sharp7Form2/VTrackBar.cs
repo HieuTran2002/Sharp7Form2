@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using controlManager;
 
 namespace Sharp7Form2
 {
@@ -18,27 +19,12 @@ namespace Sharp7Form2
         private string mArea;
         private int mPos;
         private int mBit;
-
-        private bool isResizing;
-        private bool isMoving;
-        internal bool editable;
-        private Size ControlStartSize;
-        private Point MouseDownLocation;
-
-        internal static bool MouseIsInLeftEdge { get; set; }
-        internal static bool MouseIsInRightEdge { get; set; }
-        internal static bool MouseIsInTopEdge { get; set; }
-        internal static bool MouseIsInBottomEdge { get; set; }
-        internal static moveOrResize workMode { get; set; }
+        
+        internal bool editMode;
+        private moveAndResize manager;
 
         #endregion
 
-        internal enum moveOrResize
-        {
-            Move,
-            Resize,
-            MoveAndResize
-        }
 
 
         /// <summary>
@@ -57,7 +43,6 @@ namespace Sharp7Form2
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-            //label1.Text = name;
             mDatatype = datatype;
             mArea = area;
             mPos = pos;
@@ -65,15 +50,17 @@ namespace Sharp7Form2
             driver = c;
             trackBar1.Maximum = max;
             trackBar1.Minimum = min;
-            workMode = moveOrResize.MoveAndResize;
-            editable = currentEditMode;
+            editMode = currentEditMode;
+
+            manager = new moveAndResize();
+            manager.Initialize(trackBar1, this, editMode);
         }
 
 
         #region UI event handler
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            if (!editable)
+            if (!editMode)
             {
                 try
                 {
@@ -146,197 +133,9 @@ namespace Sharp7Form2
             minTextBox.Text = trackBar1.Minimum.ToString();
         }
 
-        private void trackBar1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (editable)
-            {
-
-                if (!isResizing && !isMoving)
-                {
-                    updateMouseEdgeProperties(new Point(e.X, e.Y));
-                    updateMouseCursor();
-                }            
-            
-                if (isResizing)
-                {
-                    if (MouseIsInLeftEdge)
-                    {
-                        if (MouseIsInTopEdge)
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                            Height -= (e.Y - MouseDownLocation.Y);
-                            Top += (e.Y - MouseDownLocation.Y);
-                        }
-                        else if (MouseIsInBottomEdge)
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                        }
-                        else
-                        {
-                            Width -= (e.X - MouseDownLocation.X);
-                            Left += (e.X - MouseDownLocation.X);
-                        }
-                    }
-                    else if (MouseIsInRightEdge)
-                    {
-                        if (MouseIsInTopEdge)
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                            Height -= (e.Y - MouseDownLocation.Y);
-                            Top += (e.Y - MouseDownLocation.Y);
-
-                        }
-                        else if (MouseIsInBottomEdge)
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                            Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                        }
-                        else
-                        {
-                            Width = (e.X - MouseDownLocation.X) + ControlStartSize.Width;
-                        }
-                    }
-                    else if (MouseIsInTopEdge)
-                    {
-                        Height -= (e.Y - MouseDownLocation.Y);
-                        Top += (e.Y - MouseDownLocation.Y);
-                    }
-                    else if (MouseIsInBottomEdge)
-                    {
-                        Height = (e.Y - MouseDownLocation.Y) + ControlStartSize.Height;
-                    }
-                    else
-                    {
-                        stopDragOrResizing();
-                    }
-                }
-                else if (isMoving)
-                {
-                    if (this.Left + (e.X - MouseDownLocation.X) > 0 && this.Right + (e.X - MouseDownLocation.X) < Parent.Width)
-                    {
-                        this.Left = e.X + this.Left - MouseDownLocation.X;
-                    }
-                    if (this.Top + (e.Y - MouseDownLocation.Y) > 0 && this.Bottom + (e.Y - MouseDownLocation.Y) < Parent.Height)
-                    {
-                        this.Top = e.Y + this.Top - MouseDownLocation.Y;
-                    }
-                }
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private void trackBar1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            }
-
-            if (editable)
-            {
-
-                if (isMoving || isResizing)
-                {
-                    return;
-                }
-                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
-                {
-                    isResizing = true;
-                    ControlStartSize = Size;
-                }
-                else
-                {
-                    isMoving = true;
-                    Cursor = Cursors.Hand;
-                }
-                MouseDownLocation = new Point(e.X, e.Y);
-                this.trackBar1.Capture = true;
-            }
-
-        }
-
-        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
-        {
-            stopDragOrResizing();
-        }
-
         #endregion 
 
         #region method
-
-        /// <summary>
-        /// Check if mouse is in conners
-        /// </summary>
-        /// <param name="mouseLocationInControl"></param>
-        private void updateMouseEdgeProperties(Point mouseLocationInControl)
-        {
-            MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
-            MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - Width) <= 2;
-            MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
-            MouseIsInBottomEdge = Math.Abs(mouseLocationInControl.Y - Height) <= 2;
-        }
-
-        /// <summary>
-        /// Update current mouse state
-        /// </summary>
-        private void updateMouseCursor()
-        {
-            if (MouseIsInLeftEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInRightEdge)
-            {
-                if (MouseIsInTopEdge)
-                {
-                    Cursor = Cursors.SizeNESW;
-                }
-                else if (MouseIsInBottomEdge)
-                {
-                    Cursor = Cursors.SizeNWSE;
-                }
-                else
-                {
-                    Cursor = Cursors.SizeWE;
-                }
-            }
-            else if (MouseIsInTopEdge || MouseIsInBottomEdge)
-            {
-                Cursor = Cursors.SizeNS;
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
-        /// <summary>
-        /// Stop drag/drop 
-        /// </summary>
-        private void stopDragOrResizing()
-        {
-            isResizing = false;
-            isMoving = false;
-            trackBar1.Capture = false;
-            updateMouseCursor();
-        }
 
         /// <summary>
         /// turn on/off edit mode
@@ -344,7 +143,8 @@ namespace Sharp7Form2
         /// <param name="enableEdit">Enable or disable</param>
         public void edit(bool enableEdit)
         {
-            editable = enableEdit;
+            editMode = enableEdit;
+            manager.changeEditMode(enableEdit);
         }
 
         #endregion

@@ -59,6 +59,7 @@
     <Compile Include="button.Designer.cs">
       <DependentUpon>button.cs</DependentUpon>
     </Compile>
+    <Compile Include="moveAndResize.cs" />
     <Compile Include="panel.cs">
       <SubType>UserControl</SubType>
     </Compile>

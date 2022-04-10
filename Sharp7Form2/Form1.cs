@@ -33,13 +33,19 @@ namespace Sharp7Form2
         }
 
         #region UI event handler
-        private void button1_Click(object sender, EventArgs e)
+        private void connectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            int result;
             if (connected)
             {
-                cnnDisBtn.Text = "Connect";
-                toolStripStatusLabel1.Text = "Disconnected";
-                connected = false;
+                result =  driver.client.Disconnect();
+                if (result == 0)
+                {
+                    connectToolStripMenuItem1.Text = "Connect";
+                    toolStripStatusLabel1.Text = "Disconnected";
+                    connected = false;
+
+                }
             }
             else
             {
@@ -57,12 +63,9 @@ namespace Sharp7Form2
             if (cnnResult == 0)
             {
                 connected = true;
-                cnnDisBtn.Text = "Disconnect";
+                connectToolStripMenuItem1.Text = "Disconnect";
                 toolStripStatusLabel1.Text = "Connected";
                 driver.client.GetCpuInfo(ref cpu);
-                label3.Text = cpu.ModuleName;
-                label4.Text = cpu.SerialNumber;
-                label5.Text = cpu.ASName;
             }
             else
             {
@@ -177,6 +180,7 @@ namespace Sharp7Form2
         private void configDialogClosed_Vtrackbar(object sender, FormClosedEventArgs e)
         {
             configDialog config = sender as configDialog;
+            
             if (config.DialogResult == DialogResult.OK)
             {
                 VTrackBar trb = new VTrackBar(driver, config.name, config.dataType, config.max, config.min, config.area, config.pos, config.bit, editable);
@@ -197,5 +201,6 @@ namespace Sharp7Form2
 
         }
         #endregion
+
     }
 }

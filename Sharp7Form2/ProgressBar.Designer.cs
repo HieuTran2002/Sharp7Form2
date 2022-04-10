@@ -61,9 +61,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(376, 39);
             this.progressBar1.TabIndex = 0;
-            this.progressBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseDown);
-            this.progressBar1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseMove);
-            this.progressBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.progressBar1_MouseUp);
+            this.progressBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ProgressBar_MouseDown);
             // 
             // contextMenuStrip1
             // 
@@ -73,7 +71,7 @@
             this.removeToolStripMenuItem,
             this.propertesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
@@ -234,8 +232,9 @@
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // propertesToolStripMenuItem
             // 
@@ -252,6 +251,7 @@
             this.Controls.Add(this.progressBar1);
             this.Name = "ProgressBar";
             this.Size = new System.Drawing.Size(376, 39);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ProgressBar_MouseDown);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 

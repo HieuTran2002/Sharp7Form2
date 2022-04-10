@@ -58,9 +58,6 @@
             this.label1.Size = new System.Drawing.Size(155, 53);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
-            this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
-            this.label1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
             // 
             // contextMenuStrip1
             // 
@@ -70,7 +67,7 @@
             this.removeToolStripMenuItem,
             this.propertesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
@@ -83,7 +80,7 @@
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem});
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertyToolStripMenuItem.Text = "Edit";
             // 
             // areaToolStripMenuItem
@@ -91,7 +88,7 @@
             this.areaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AreaComboBox});
             this.areaToolStripMenuItem.Name = "areaToolStripMenuItem";
-            this.areaToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.areaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.areaToolStripMenuItem.Text = "Area";
             // 
             // AreaComboBox
@@ -109,7 +106,7 @@
             this.nameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NameTextBox});
             this.nameToolStripMenuItem.Name = "nameToolStripMenuItem";
-            this.nameToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.nameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.nameToolStripMenuItem.Text = "Name";
             // 
             // NameTextBox
@@ -123,7 +120,7 @@
             this.datatypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DatatypeComboBox});
             this.datatypeToolStripMenuItem.Name = "datatypeToolStripMenuItem";
-            this.datatypeToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.datatypeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.datatypeToolStripMenuItem.Text = "Datatype";
             // 
             // DatatypeComboBox
@@ -144,7 +141,7 @@
             this.positionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PositionTextBox});
             this.positionToolStripMenuItem.Name = "positionToolStripMenuItem";
-            this.positionToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.positionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.positionToolStripMenuItem.Text = "Position";
             // 
             // PositionTextBox
@@ -159,7 +156,7 @@
             this.bitToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BitComboBox});
             this.bitToolStripMenuItem.Name = "bitToolStripMenuItem";
-            this.bitToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
+            this.bitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.bitToolStripMenuItem.Text = "Bit";
             // 
             // BitComboBox
@@ -180,15 +177,16 @@
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // propertesToolStripMenuItem
             // 
             this.propertesToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.propertesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.propertesToolStripMenuItem.Name = "propertesToolStripMenuItem";
-            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertesToolStripMenuItem.Text = "Propertes";
             this.propertesToolStripMenuItem.Click += new System.EventHandler(this.propertesToolStripMenuItem_Click);
             // 
