@@ -70,25 +70,25 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stinkToolStripMenuItem,
-            this.removeToolStripMenuItem,
             this.propertyToolStripMenuItem,
-            this.propertesToolStripMenuItem});
+            this.propertesToolStripMenuItem,
+            this.removeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 100);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
             // stinkToolStripMenuItem
             // 
             this.stinkToolStripMenuItem.Name = "stinkToolStripMenuItem";
-            this.stinkToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.stinkToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.stinkToolStripMenuItem.Text = "Enable stink";
             this.stinkToolStripMenuItem.Click += new System.EventHandler(this.stinkToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -101,7 +101,7 @@
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem});
             this.propertyToolStripMenuItem.Name = "propertyToolStripMenuItem";
-            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.propertyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertyToolStripMenuItem.Text = "Edit";
             // 
             // nameToolStripMenuItem
@@ -200,7 +200,7 @@
             // propertesToolStripMenuItem
             // 
             this.propertesToolStripMenuItem.Name = "propertesToolStripMenuItem";
-            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.propertesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.propertesToolStripMenuItem.Text = "Propertes";
             this.propertesToolStripMenuItem.Click += new System.EventHandler(this.propertesToolStripMenuItem_Click);
             // 

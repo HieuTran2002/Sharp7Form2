@@ -9,7 +9,8 @@ namespace controlManager
 {
     public partial class moveAndResize
     {
-        private  bool isMoving;
+        #region Initialize variables
+        private bool isMoving;
         private  Point MouseDownLocation;
         private  bool isResizing;
         private  Size _currentControlStartSize;
@@ -20,7 +21,11 @@ namespace controlManager
         internal  bool MouseIsInRightEdge { get; set; }
         internal  bool MouseIsInTopEdge { get; set; }
         internal  bool MouseIsInBottomEdge { get; set; }
-        public  void Initialize(Control control, Control container, bool currentEditMode)
+
+        #endregion
+
+        #region Contructor
+        public void Initialize(Control control, Control container, bool currentEditMode)
         {
             isMoving = false;
             isResizing = false;
@@ -121,8 +126,10 @@ namespace controlManager
                 mContainer.Cursor = Cursors.Default;
             }
         }
+        #endregion
 
-        private  void startMovingOrResizing(Control control, MouseEventArgs e)
+        #region Move/Resize method
+        private void startMovingOrResizing(Control control, MouseEventArgs e)
         {
             if (editMode)
             {
@@ -204,10 +211,14 @@ namespace controlManager
             control.Capture = false;
             updateMouseCursor();
         }
+        #endregion
+
+        #region Enable/Disalbe 
         public void changeEditMode(bool editmode)
         {
             editMode = editmode;
 
         }
+        #endregion
     }
 }

@@ -25,12 +25,15 @@ namespace Sharp7Form2
         public delegate void enableEdit(bool enable);
         enableEdit myDelegate;
         #endregion
+
+        #region Contructor
         public Form1()
         {
             InitializeComponent();
             driver = new S7Driver();
             statusLabel = toolStripStatusLabel1;
         }
+        #endregion
 
         #region UI event handler
         private void connectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -49,7 +52,7 @@ namespace Sharp7Form2
             }
             else
             {
-                connectDialog connectDialog = new connectDialog();
+                connectDialog connectDialog = new connectDialog(Cursor.Position);
                 connectDialog.Show();
                 connectDialog.FormClosed += new FormClosedEventHandler(CnnDialogClosed);
             } 
@@ -92,42 +95,42 @@ namespace Sharp7Form2
 
         private void horizontalToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(true);
+            configDialog configForm = new configDialog(Cursor.Position, true);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Htrackbar);
         }
 
         private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(true);
+            configDialog configForm = new configDialog(Cursor.Position, true);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Vtrackbar);
         }
 
         private void buttonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(false);
+            configDialog configForm = new configDialog(Cursor.Position, false);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_button);
         }
 
         private void labelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(false);
+            configDialog configForm = new configDialog(Cursor.Position, false);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_label);
         }
 
         private void processBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(true);
+            configDialog configForm = new configDialog(Cursor.Position, true);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_ProcessBar);
         }
 
         private void lEDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            configDialog configForm = new configDialog(false);
+            configDialog configForm = new configDialog(Cursor.Position, false);
             configForm.Show();
             configForm.FormClosed += new FormClosedEventHandler(configDialogClosed_Panel);
         }
@@ -151,6 +154,7 @@ namespace Sharp7Form2
                 button btn = new button(driver, config.name, config.dataType, config.area, config.pos, config.bit, editable);
                 panel1.Controls.Add(btn);
                 myDelegate += new enableEdit(btn.edit);
+                
             }
         }
 

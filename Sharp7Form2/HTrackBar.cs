@@ -18,6 +18,7 @@ namespace Sharp7Form2
         private moveAndResize manager;
         #endregion
 
+        #region Contructor
         /// <summary>
         /// contructor
         /// </summary>
@@ -45,7 +46,7 @@ namespace Sharp7Form2
             manager = new moveAndResize();
             manager.Initialize(trackBar1, this, editMode);
         }
-
+        #endregion
 
         #region UI event handler
         private void trackBar1_ValueChanged(object sender, System.EventArgs e)
@@ -61,6 +62,13 @@ namespace Sharp7Form2
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void trackBar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (editMode && e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
             }
         }
        
@@ -123,7 +131,6 @@ namespace Sharp7Form2
         }
         #endregion
 
-
         #region method
 
         public void edit(bool editmode)
@@ -134,12 +141,5 @@ namespace Sharp7Form2
 
         #endregion
 
-        private void trackBar1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (editMode && e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            }
-        }
     }
 }

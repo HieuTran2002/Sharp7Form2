@@ -28,6 +28,7 @@ namespace Sharp7Form2
         private System.Windows.Forms.Timer timer1;
         #endregion
 
+        #region Contructor
         public label(S7Driver c, string name, string datatype, string area, int pos, int bit, bool currentEditMode)
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace Sharp7Form2
             t.Start();
 
         }
+        #endregion
 
         #region UI event handler
         private void timer1_Tick(object sender, EventArgs e)
@@ -82,7 +84,6 @@ namespace Sharp7Form2
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            label1.Text = NameTextBox.Text;
             mPos = Convert.ToInt16(PositionTextBox.Text);
             mArea = AreaComboBox.Text;
             mBit = Convert.ToInt16(BitComboBox.Text);
@@ -91,11 +92,19 @@ namespace Sharp7Form2
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
         {
-            NameTextBox.Text = label1.Text;
             AreaComboBox.Text = mArea;
             DatatypeComboBox.Text = mDatatype;
             PositionTextBox.Text = mPos.ToString();
             BitComboBox.Text = mBit.ToString();
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && editMode)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+
+            }
         }
 
         #endregion

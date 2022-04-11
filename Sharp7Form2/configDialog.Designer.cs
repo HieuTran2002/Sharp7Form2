@@ -252,6 +252,7 @@
             this.Name = "configDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "configDialog";
+            this.Load += new System.EventHandler(this.configDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

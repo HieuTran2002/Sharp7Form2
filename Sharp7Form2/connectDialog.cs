@@ -15,21 +15,27 @@ namespace Sharp7Form2
 {
     public partial class connectDialog : Form
     {
+        #region Initialize variables
         Sharp7Client Client = new Sharp7Client();
         public string ip;
         public int rank;
         public int slot;
+        private Point startPoint;
+        #endregion
 
-        public connectDialog()
+        #region Contructor
+        public connectDialog(Point _startPoint)
         {
             InitializeComponent();
             IpAdressTB.Text = GetIPAddress();
             //IpAdressTB.Text = "192.168.0.241";
             Rank.SelectedIndex = 0;
             Slot.SelectedIndex = 1;
+            startPoint = _startPoint;
         }
+        #endregion
 
-        
+        #region UI event handling
         private void CancelBTN_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -57,5 +63,10 @@ namespace Sharp7Form2
             return result;
         }
 
+        private void connectDialog_Load(object sender, EventArgs e)
+        {
+            SetDesktopLocation(startPoint.X, startPoint.Y);
+        }
+        #endregion
     }
 }

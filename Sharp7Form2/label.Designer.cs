@@ -34,8 +34,6 @@
             this.propertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AreaComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.nameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NameTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.datatypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DatatypeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.positionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,13 +42,16 @@
             this.BitComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(112)))), ((int)(((byte)(41)))));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(222)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -58,16 +59,18 @@
             this.label1.Size = new System.Drawing.Size(155, 53);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.propertyToolStripMenuItem,
-            this.removeToolStripMenuItem,
-            this.propertesToolStripMenuItem});
+            this.propertesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.removeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 82);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
@@ -75,7 +78,6 @@
             // 
             this.propertyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.areaToolStripMenuItem,
-            this.nameToolStripMenuItem,
             this.datatypeToolStripMenuItem,
             this.positionToolStripMenuItem,
             this.bitToolStripMenuItem});
@@ -100,20 +102,6 @@
             "M"});
             this.AreaComboBox.Name = "AreaComboBox";
             this.AreaComboBox.Size = new System.Drawing.Size(121, 28);
-            // 
-            // nameToolStripMenuItem
-            // 
-            this.nameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NameTextBox});
-            this.nameToolStripMenuItem.Name = "nameToolStripMenuItem";
-            this.nameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.nameToolStripMenuItem.Text = "Name";
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(100, 27);
             // 
             // datatypeToolStripMenuItem
             // 
@@ -190,6 +178,11 @@
             this.propertesToolStripMenuItem.Text = "Propertes";
             this.propertesToolStripMenuItem.Click += new System.EventHandler(this.propertesToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            // 
             // label
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -209,8 +202,6 @@
         private System.Windows.Forms.ToolStripMenuItem propertyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox AreaComboBox;
-        private System.Windows.Forms.ToolStripMenuItem nameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox NameTextBox;
         private System.Windows.Forms.ToolStripMenuItem datatypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox DatatypeComboBox;
         private System.Windows.Forms.ToolStripMenuItem positionToolStripMenuItem;
@@ -219,5 +210,6 @@
         private System.Windows.Forms.ToolStripComboBox BitComboBox;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem propertesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

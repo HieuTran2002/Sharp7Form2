@@ -25,6 +25,8 @@ namespace Sharp7Form2
         private S7Driver driver;
 
         moveAndResize manager;
+        public delegate void errorHandler(string error);
+        public errorHandler ErrorHandler;
 
         #endregion
 
@@ -51,6 +53,8 @@ namespace Sharp7Form2
 
             manager = new moveAndResize();
             manager.Initialize(button1, this, editMode);
+
+            
 
         }
 
@@ -113,12 +117,12 @@ namespace Sharp7Form2
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && editMode)
             {
                 contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
             }
 
-            if (!editMode) 
+            if (!editMode && e.Button == MouseButtons.Left) 
             { 
                 if (stink)
                 {
@@ -132,24 +136,7 @@ namespace Sharp7Form2
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.TargetSite.ToString());
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        int result = driver.client.Write(true, mArea, mPos, mBit);
-                        if (result == 0)
-                        {
-                            lastValue = true;
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.TargetSite.ToString());
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
@@ -157,7 +144,7 @@ namespace Sharp7Form2
 
         private void button1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!stink && !editMode)
+            if (!stink && !editMode && e.Button == MouseButtons.Left)
             {
                 try
                 {
@@ -173,7 +160,6 @@ namespace Sharp7Form2
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message);
                 }
             }

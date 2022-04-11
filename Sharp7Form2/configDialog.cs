@@ -12,6 +12,7 @@ namespace Sharp7Form2
 {
     public partial class configDialog : Form
     {
+        #region Initiaize variables
         public string name;
         public string dataType;
         public string area;
@@ -20,8 +21,11 @@ namespace Sharp7Form2
         public int max;
         public int min;
         private bool ReturnValueRange;
-        
-        public configDialog(bool isReturnValueRange)
+        private Point startPoint;
+        #endregion
+
+        #region Contructor
+        public configDialog(Point _startPoint, bool isReturnValueRange)
         {
             InitializeComponent();
 
@@ -38,10 +42,12 @@ namespace Sharp7Form2
                 label5.Visible = false;
                 textBox4.Visible = false;
                 textBox3.Visible = false;
-
             }
+            startPoint = _startPoint;
         }
+        #endregion
 
+        #region UI event handling
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -94,5 +100,11 @@ namespace Sharp7Form2
                 e.Handled = true;
             }
         }
+
+        private void configDialog_Load(object sender, EventArgs e)
+        {
+            SetDesktopLocation(startPoint.X, startPoint.Y);
+        }
+        #endregion
     }
 }

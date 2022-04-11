@@ -25,6 +25,7 @@ namespace Sharp7Form2
         private moveAndResize manager;
         #endregion
 
+        #region Contructor
         public ProgressBar(S7Driver c, string name, string datatype, int max, int min, string area, int pos, int bit, bool currentEditMode)
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace Sharp7Form2
             t.IsBackground = true;
             t.Start();
         }
+        #endregion
 
         #region UI event handler
         private void timer1_Tick(object sender, EventArgs e)
@@ -66,23 +68,13 @@ namespace Sharp7Form2
             }
         }
 
-        private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
             mPos = Convert.ToInt16(PositionTextBox.Text);
             mArea = AreaComboBox.Text;
-            mBit = Convert.ToInt16(BitComboBox.Text);
             mDatatype = DatatypeComboBox.Text;
             progressBar1.Maximum = Convert.ToInt16(maxTextBox.Text);
             progressBar1.Minimum = Convert.ToInt16(minTextBox.Text);
-            progressBar1.Width = Convert.ToInt16(widthTextBox.Text);
         }
 
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
@@ -90,10 +82,47 @@ namespace Sharp7Form2
             AreaComboBox.Text = mArea;
             DatatypeComboBox.Text = mDatatype;
             PositionTextBox.Text = mPos.ToString();
-            BitComboBox.Text = mBit.ToString();
             maxTextBox.Text = progressBar1.Maximum.ToString();
             minTextBox.Text = progressBar1.Minimum.ToString();
-            widthTextBox.Text = progressBar1.Width.ToString();
+        }
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Parent.Controls.Remove(this);
+        }
+        private void ProgressBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (editMode && e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
+            }
+        }
+
+        private void propertesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Area : {mArea} \nDatatype : {mDatatype} \nPosition: {mPos} \nMax : {progressBar1.Maximum} \nMin : {progressBar1.Minimum}");
+        }
+        private void minTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void maxRangeTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PositionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -105,19 +134,8 @@ namespace Sharp7Form2
             editMode = enableEdit;
             manager.changeEditMode(enableEdit);
         }
+
         #endregion
 
-        private void ProgressBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (editMode && e.Button == MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position.X, Cursor.Position.Y);
-            }
-        }
-
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Parent.Controls.Remove(this);
-        }
     }
 }
