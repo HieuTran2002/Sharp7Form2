@@ -139,6 +139,17 @@ namespace Sharp7Form2
                         MessageBox.Show(ex.Message);
                     }
                 }
+                else
+                {
+                    try
+                    {
+                        driver.client.Write(true, mArea, mPos, mBit);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
         }
 
