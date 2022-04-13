@@ -23,7 +23,7 @@ namespace Sharp7Form2
 
         public System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public delegate void enableEdit(bool enable);
-        enableEdit myDelegate;
+       enableEdit myDelegate;
         #endregion
 
         #region Contructor

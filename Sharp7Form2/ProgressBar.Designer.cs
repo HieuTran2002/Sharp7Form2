@@ -86,7 +86,7 @@
             this.areaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AreaComboBox});
             this.areaToolStripMenuItem.Name = "areaToolStripMenuItem";
-            this.areaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.areaToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.areaToolStripMenuItem.Text = "Area";
             // 
             // AreaComboBox
@@ -104,7 +104,7 @@
             this.datatypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DatatypeComboBox});
             this.datatypeToolStripMenuItem.Name = "datatypeToolStripMenuItem";
-            this.datatypeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.datatypeToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.datatypeToolStripMenuItem.Text = "Datatype";
             // 
             // DatatypeComboBox
@@ -125,12 +125,13 @@
             this.positionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PositionTextBox});
             this.positionToolStripMenuItem.Name = "positionToolStripMenuItem";
-            this.positionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.positionToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.positionToolStripMenuItem.Text = "Position";
             // 
             // PositionTextBox
             // 
             this.PositionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PositionTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.PositionTextBox.Name = "PositionTextBox";
             this.PositionTextBox.Size = new System.Drawing.Size(100, 27);
             this.PositionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PositionTextBox_KeyPress);
@@ -141,12 +142,13 @@
             this.maxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maxTextBox});
             this.maxToolStripMenuItem.Name = "maxToolStripMenuItem";
-            this.maxToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.maxToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.maxToolStripMenuItem.Text = "Max ";
             // 
             // maxTextBox
             // 
             this.maxTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maxTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.maxTextBox.Name = "maxTextBox";
             this.maxTextBox.Size = new System.Drawing.Size(100, 27);
             this.maxTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxRangeTextBox_KeyPress);
@@ -156,12 +158,13 @@
             this.minToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.minTextBox});
             this.minToolStripMenuItem.Name = "minToolStripMenuItem";
-            this.minToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.minToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.minToolStripMenuItem.Text = "Min";
             // 
             // minTextBox
             // 
             this.minTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.minTextBox.Name = "minTextBox";
             this.minTextBox.Size = new System.Drawing.Size(100, 27);
             this.minTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.minTextBox_KeyPress);
