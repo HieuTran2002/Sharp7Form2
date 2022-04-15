@@ -206,5 +206,14 @@ namespace Sharp7Form2
         }
         #endregion
 
+        private void labelToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            nameLabel nameLabel = new nameLabel();
+            panel1.Controls.Add(nameLabel);
+
+            myDelegate += new enableEdit(nameLabel.edit);
+
+        }
+
     }
 }

@@ -58,7 +58,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -88,6 +94,12 @@
       <DependentUpon>button.cs</DependentUpon>
     </Compile>
     <Compile Include="moveAndResize.cs" />
+    <Compile Include="nameLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="nameLabel.Designer.cs">
+      <DependentUpon>nameLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +164,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="nameLabel.resx">
+      <DependentUpon>nameLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="panel.resx">
       <DependentUpon>panel.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +192,7 @@
       <DependentUpon>VTrackBar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
