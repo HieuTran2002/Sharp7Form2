@@ -11,7 +11,7 @@ namespace Sharp7Form2
 
     {
 
-        #region 
+        #region Connect
         /// <summary>
         /// Connect to PLC asynchronously
         /// </summary>
@@ -47,9 +47,7 @@ namespace Sharp7Form2
                 {
                     buffer = new byte[2];
                     S7.SetIntAt(buffer, 0, Convert.ToInt16(value));
-                    S7.SetIntAt(buffer, 0, Convert.ToInt16(value));
                     return ABWrite(pos, 2, buffer);
-                    //MessageBox.Show(ErrorText(result));
                 }
                 else if (datatype == "REAL")
                 {
@@ -106,7 +104,6 @@ namespace Sharp7Form2
                 {
                     return 7;
                 }
-
             }
             else
             {

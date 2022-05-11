@@ -210,7 +210,6 @@ namespace Sharp7Form2
         {
             nameLabel nameLabel = new nameLabel();
             panel1.Controls.Add(nameLabel);
-
             myDelegate += new enableEdit(nameLabel.edit);
 
         }
