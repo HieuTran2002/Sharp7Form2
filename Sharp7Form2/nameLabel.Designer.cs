@@ -39,6 +39,7 @@
             this.nameTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,9 +64,10 @@
             this.fontSizeToolStripMenuItem,
             this.fontStyleToolStripMenuItem,
             this.textToolStripMenuItem,
-            this.colorToolStripMenuItem});
+            this.colorToolStripMenuItem,
+            this.removeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
             this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
             // 
             // fontSizeToolStripMenuItem
@@ -82,8 +84,8 @@
             this.fontSizeTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.fontSizeTextBox1.Name = "fontSizeTextBox1";
             this.fontSizeTextBox1.Size = new System.Drawing.Size(100, 27);
-            this.fontSizeTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
             this.fontSizeTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBox1_KeyPress);
+            this.fontSizeTextBox1.TextChanged += new System.EventHandler(this.fontSizeTextBox1_TextChanged);
             // 
             // fontStyleToolStripMenuItem
             // 
@@ -113,6 +115,7 @@
             // nameTextBox
             // 
             this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nameTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(100, 27);
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
@@ -133,6 +136,13 @@
             this.colorTextBox.Name = "colorTextBox";
             this.colorTextBox.Size = new System.Drawing.Size(100, 27);
             this.colorTextBox.TextChanged += new System.EventHandler(this.colorToolStripMenuItem_TextChanged);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // nameLabel
             // 
@@ -161,5 +171,6 @@
         private System.Windows.Forms.ToolStripTextBox nameTextBox;
         private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox colorTextBox;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }

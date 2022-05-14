@@ -46,14 +46,6 @@ namespace Sharp7Form2
             }
         }
 
-        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                label1.Font = new Font(label1.Font.FontFamily, Convert.ToInt16( fontSizeTextBox1.Text )) ;
-            }
-        }
-
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
@@ -91,6 +83,22 @@ namespace Sharp7Form2
             try
             {
                 label1.ForeColor = ColorTranslator.FromHtml(colorTextBox.Text);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+        }
+
+        private void fontSizeTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                label1.Font = new Font(label1.Font.FontFamily, Convert.ToInt16( fontSizeTextBox1.Text )) ;
             }
             catch (Exception)
             {

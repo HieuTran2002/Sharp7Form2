@@ -22,13 +22,23 @@ namespace controlManager
         internal  bool MouseIsInTopEdge { get; set; }
         internal  bool MouseIsInBottomEdge { get; set; }
 
+        public enum moveOrResize
+        {
+            Move,
+            Resize,
+            moveAndResize
+        }
+
+        internal static moveOrResize workMode { get; set; }
+
         #endregion
 
         #region Contructor
-        public void Initialize(Control control, Control container, bool currentEditMode)
+        public void Initialize(Control control, Control container, bool currentEditMode, moveOrResize workmode = moveOrResize.moveAndResize)
         {
             isMoving = false;
             isResizing = false;
+            workMode = workmode;
             MouseDownLocation = Point.Empty;
             MouseIsInLeftEdge = false;
             MouseIsInLeftEdge = false;
@@ -109,7 +119,7 @@ namespace controlManager
                     }
                 }
                 else if (isMoving)
-            {
+                {
                     if (mContainer.Left + (e.X - MouseDownLocation.X) > 0 && mContainer.Right + (e.X - MouseDownLocation.X) < mContainer.Parent.Width)
 
                     {
@@ -137,7 +147,9 @@ namespace controlManager
                 {
                     return;
                 }
-                if (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge)
+                if (workMode != moveOrResize.Move 
+                    &&
+                    (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge))
                 {
                     isResizing = true;
                     _currentControlStartSize = control.Size;
@@ -155,6 +167,10 @@ namespace controlManager
 
         private  void updateMouseEdgeProperties(Control control ,Point mouseLocationInControl)
         {
+            if (workMode == moveOrResize.Move)
+            {
+                return;
+            }
             MouseIsInLeftEdge = Math.Abs(mouseLocationInControl.X) <= 2;
             MouseIsInRightEdge = Math.Abs(mouseLocationInControl.X - mContainer.Width) <= 2;
             MouseIsInTopEdge = Math.Abs(mouseLocationInControl.Y) <= 2;
@@ -163,6 +179,11 @@ namespace controlManager
 
         private  void updateMouseCursor()
         {
+            if (workMode == moveOrResize.Move)
+            {
+                mContainer.Cursor = Cursors.Default;
+                return;
+            }
             if (MouseIsInLeftEdge)
             {
                 if (MouseIsInTopEdge)

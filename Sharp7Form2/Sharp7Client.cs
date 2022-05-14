@@ -132,7 +132,7 @@ namespace Sharp7Form2
             {
                 byte[] buffer = new byte[1];
                 S7.SetBitAt(buffer, 0, bit, value);
-                return WriteArea(S7Area.PA, 0, pos * 8 + bit, 1, S7WordLength.Bit, buffer);
+                return WriteArea(S7Area.MK, 0, pos * 8 + bit, 1, S7WordLength.Bit, buffer);
             }
             else
             {

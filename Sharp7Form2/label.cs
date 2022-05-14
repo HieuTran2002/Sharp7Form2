@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sharp7;
 using controlManager;
+using System.Drawing.Text;
+
 namespace Sharp7Form2
 {
     public partial class label : UserControl
@@ -40,7 +42,7 @@ namespace Sharp7Form2
             editMode = currentEditMode;
 
             manager = new moveAndResize();
-            manager.Initialize(label1, this, editMode);
+            manager.Initialize(label1, this, editMode, moveAndResize.moveOrResize.Move);
 
             timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 200;
@@ -96,6 +98,7 @@ namespace Sharp7Form2
             DatatypeComboBox.Text = mDatatype;
             PositionTextBox.Text = mPos.ToString();
             BitComboBox.Text = mBit.ToString();
+            getFont();
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)
@@ -116,8 +119,70 @@ namespace Sharp7Form2
             editMode = enableEdit;
             manager.changeEditMode(enableEdit);
         }
+        private void getFont()
+        {
+            InstalledFontCollection fonts = new InstalledFontCollection();
+            try
+            {
+                foreach (FontFamily font in fonts.Families)
+                {
+                    fontStyleComboBox1.Items.Add(font.Name);
+                }
+            }
+            catch
+            {
+
+            }
+        }
 
         #endregion
 
+        private void fontStyleComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label1.Font = new Font(fontStyleComboBox1.Text, label1.Font.Size);
+        }
+
+        private void fontSizeTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void fontSizeTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                label1.Font = new Font(label1.Font.FontFamily, Convert.ToInt16(fontSizeTextBox1.Text)) ;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void backgroundTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                label1.BackColor = ColorTranslator.FromHtml(backgroundTextBox1.Text);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void foreColorTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                label1.ForeColor = ColorTranslator.FromHtml(foreColorTextBox1.Text);
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }
