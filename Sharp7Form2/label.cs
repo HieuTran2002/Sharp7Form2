@@ -16,7 +16,7 @@ namespace Sharp7Form2
 {
     public partial class label : UserControl
     {
-        #region Initialize variables
+        #region Properties
         private S7Driver driver;
         private string mDatatype;
         private string mArea;
@@ -110,33 +110,6 @@ namespace Sharp7Form2
             }
         }
 
-        #endregion
-
-        #region Method
-
-        public void edit(bool enableEdit)
-        {
-            editMode = enableEdit;
-            manager.changeEditMode(enableEdit);
-        }
-        private void getFont()
-        {
-            InstalledFontCollection fonts = new InstalledFontCollection();
-            try
-            {
-                foreach (FontFamily font in fonts.Families)
-                {
-                    fontStyleComboBox1.Items.Add(font.Name);
-                }
-            }
-            catch
-            {
-
-            }
-        }
-
-        #endregion
-
         private void fontStyleComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             label1.Font = new Font(fontStyleComboBox1.Text, label1.Font.Size);
@@ -184,5 +157,33 @@ namespace Sharp7Form2
             {
             }
         }
+
+        #endregion
+
+        #region Method
+
+        public void edit(bool enableEdit)
+        {
+            editMode = enableEdit;
+            manager.changeEditMode(enableEdit);
+        }
+        private void getFont()
+        {
+            InstalledFontCollection fonts = new InstalledFontCollection();
+            try
+            {
+                foreach (FontFamily font in fonts.Families)
+                {
+                    fontStyleComboBox1.Items.Add(font.Name);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
+
     }
 }

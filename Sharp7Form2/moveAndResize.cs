@@ -9,7 +9,7 @@ namespace controlManager
 {
     public partial class moveAndResize
     {
-        #region Initialize variables
+        #region Properties
         private bool isMoving;
         private  Point MouseDownLocation;
         private  bool isResizing;
@@ -51,6 +51,36 @@ namespace controlManager
             control.MouseUp += (sender, e) => stopDragOrResizing(control);
             control.MouseMove += (sender, e) => moveControl(control, e);
 
+        }
+
+        #endregion
+
+        #region Move/Resize method
+
+        private void startMovingOrResizing(Control control, MouseEventArgs e)
+        {
+            if (editMode)
+            {
+                if (isMoving || isResizing)
+                {
+                    return;
+                }
+                if (workMode != moveOrResize.Move 
+                    &&
+                    (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge))
+                {
+                    isResizing = true;
+                    _currentControlStartSize = control.Size;
+                }
+                else
+                {
+                    isMoving = true;
+                    mContainer.Cursor = Cursors.Hand;
+                }
+                MouseDownLocation = new Point(e.X, e.Y);
+                control.Capture = true;
+
+            }
         }
 
         private  void moveControl(Control control, MouseEventArgs e)
@@ -134,34 +164,6 @@ namespace controlManager
             else
             {
                 mContainer.Cursor = Cursors.Default;
-            }
-        }
-        #endregion
-
-        #region Move/Resize method
-        private void startMovingOrResizing(Control control, MouseEventArgs e)
-        {
-            if (editMode)
-            {
-                if (isMoving || isResizing)
-                {
-                    return;
-                }
-                if (workMode != moveOrResize.Move 
-                    &&
-                    (MouseIsInRightEdge || MouseIsInLeftEdge || MouseIsInTopEdge || MouseIsInBottomEdge))
-                {
-                    isResizing = true;
-                    _currentControlStartSize = control.Size;
-                }
-                else
-                {
-                    isMoving = true;
-                    mContainer.Cursor = Cursors.Hand;
-                }
-                MouseDownLocation = new Point(e.X, e.Y);
-                control.Capture = true;
-
             }
         }
 

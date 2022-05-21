@@ -15,15 +15,14 @@ namespace Sharp7Form2
 {
     public partial class Form1 : Form
     {
-        #region Initialize variables
+        #region properties
         internal bool editable = false;
         private bool connected = false;
-        private S7Driver driver;
-        private S7Client.S7CpuInfo cpu;
 
+        private S7Driver driver;
         public System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public delegate void enableEdit(bool enable);
-       enableEdit myDelegate;
+        enableEdit myDelegate;
         #endregion
 
         #region Contructor
@@ -68,7 +67,6 @@ namespace Sharp7Form2
                 connected = true;
                 connectToolStripMenuItem1.Text = "Disconnect";
                 toolStripStatusLabel1.Text = "Connected";
-                driver.client.GetCpuInfo(ref cpu);
             }
             else
             {
@@ -204,15 +202,15 @@ namespace Sharp7Form2
             }
 
         }
-        #endregion
 
         private void labelToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             nameLabel nameLabel = new nameLabel();
             panel1.Controls.Add(nameLabel);
             myDelegate += new enableEdit(nameLabel.edit);
-
         }
 
-    }
+        #endregion
+
+   }
 }

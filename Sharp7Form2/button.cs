@@ -13,7 +13,7 @@ namespace Sharp7Form2
 {
     public partial class button : UserControl
     {
-        #region Initialze variables
+        #region Properties
         internal bool editMode;
         private string mDatatype;
         private string mArea;
@@ -179,7 +179,6 @@ namespace Sharp7Form2
         #endregion
 
         #region Method
-
 
         public void edit(bool enableEdit)
         {

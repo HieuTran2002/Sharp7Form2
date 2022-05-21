@@ -15,15 +15,21 @@ namespace Sharp7Form2
 {
     public partial class nameLabel : UserControl
     {
-        
+        #region Properties 
         private moveAndResize manager;
         private bool editMode = false;
+        #endregion
+
+        #region Contructor
         public nameLabel()
         {
             InitializeComponent();
             manager = new moveAndResize();
             manager.Initialize(label1, this, editMode);
         }
+        #endregion
+
+        #region UI event handler
         public void edit(bool enableEdit)
         {
             editMode = enableEdit;
@@ -104,5 +110,7 @@ namespace Sharp7Form2
             {
             }
         }
+
+        #endregion
     }
 }

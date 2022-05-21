@@ -45,12 +45,12 @@
             this.trackbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableEditModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.labelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -130,7 +130,7 @@
             this.lEDToolStripMenuItem});
             this.buttonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(135, 28);
             this.buttonToolStripMenuItem.Text = "Read";
             // 
             // labelToolStripMenuItem
@@ -168,7 +168,7 @@
             this.trackbarToolStripMenuItem});
             this.writeToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(135, 28);
             this.writeToolStripMenuItem.Text = "Write";
             // 
             // buttonStripMenuItem
@@ -176,7 +176,7 @@
             this.buttonStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(54)))), ((int)(((byte)(82)))));
             this.buttonStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.buttonStripMenuItem.Name = "buttonStripMenuItem";
-            this.buttonStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.buttonStripMenuItem.Size = new System.Drawing.Size(158, 28);
             this.buttonStripMenuItem.Text = "Button";
             this.buttonStripMenuItem.Click += new System.EventHandler(this.buttonToolStripMenuItem_Click);
             // 
@@ -188,7 +188,7 @@
             this.horizontalToolStripMenuItem});
             this.trackbarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.trackbarToolStripMenuItem.Name = "trackbarToolStripMenuItem";
-            this.trackbarToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.trackbarToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
             this.trackbarToolStripMenuItem.Text = "Trackbar";
             // 
             // verticalToolStripMenuItem
@@ -208,6 +208,15 @@
             this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(173, 28);
             this.horizontalToolStripMenuItem.Text = "Horizontal";
             this.horizontalToolStripMenuItem.Click += new System.EventHandler(this.horizontalToolStripMenuItem1_Click);
+            // 
+            // labelToolStripMenuItem1
+            // 
+            this.labelToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(54)))), ((int)(((byte)(82)))));
+            this.labelToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
+            this.labelToolStripMenuItem1.Name = "labelToolStripMenuItem1";
+            this.labelToolStripMenuItem1.Size = new System.Drawing.Size(135, 28);
+            this.labelToolStripMenuItem1.Text = "Label";
+            this.labelToolStripMenuItem1.Click += new System.EventHandler(this.labelToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -245,15 +254,6 @@
             this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 16);
-            // 
-            // labelToolStripMenuItem1
-            // 
-            this.labelToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(54)))), ((int)(((byte)(82)))));
-            this.labelToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(208)))), ((int)(((byte)(44)))));
-            this.labelToolStripMenuItem1.Name = "labelToolStripMenuItem1";
-            this.labelToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
-            this.labelToolStripMenuItem1.Text = "Label";
-            this.labelToolStripMenuItem1.Click += new System.EventHandler(this.labelToolStripMenuItem1_Click);
             // 
             // Form1
             // 

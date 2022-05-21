@@ -12,7 +12,7 @@ namespace Sharp7Form2
 {
     public partial class configDialog : Form
     {
-        #region Initiaize variables
+        #region Properties
         public string name;
         public string dataType;
         public string area;

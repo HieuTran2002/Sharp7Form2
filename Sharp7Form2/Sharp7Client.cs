@@ -8,7 +8,6 @@ using Sharp7;
 namespace Sharp7Form2 
 {
     public class Sharp7Client : S7Client
-
     {
 
         #region Connect
