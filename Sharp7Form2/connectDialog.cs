@@ -32,6 +32,8 @@ namespace Sharp7Form2
             Rank.SelectedIndex = 0;
             Slot.SelectedIndex = 1;
             startPoint = _startPoint;
+            CnnBTN.DialogResult = DialogResult.OK;
+            CancelBTN.DialogResult = DialogResult.Cancel;
         }
         #endregion
 

@@ -41,6 +41,7 @@ namespace Sharp7Form2
             if (connected)
             {
                 result =  driver.client.Disconnect();
+                
                 if (result == 0)
                 {
                     connectToolStripMenuItem1.Text = "Connect";
@@ -59,18 +60,22 @@ namespace Sharp7Form2
 
         private async void CnnDialogClosed(object sender, FormClosedEventArgs e)
         {
-            toolStripStatusLabel1.Text = "Connecting pls wait.....";
             connectDialog cnnDialog = sender as connectDialog;
-            int cnnResult = await driver.client.AsyncConnectTo(cnnDialog.ip, cnnDialog.rank, cnnDialog.slot);
-            if (cnnResult == 0)
+            if(cnnDialog.DialogResult == DialogResult.OK)
             {
-                connected = true;
-                connectToolStripMenuItem1.Text = "Disconnect";
-                toolStripStatusLabel1.Text = "Connected";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = driver.client.ErrorText(cnnResult);
+                toolStripStatusLabel1.Text = "Connecting pls wait.....";
+                int cnnResult = await driver.client.AsyncConnectTo(cnnDialog.ip, cnnDialog.rank, cnnDialog.slot);
+                if (cnnResult == 0)
+                {
+                    connected = true;
+                    connectToolStripMenuItem1.Text = "Disconnect";
+                    toolStripStatusLabel1.Text = "Connected";
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = driver.client.ErrorText(cnnResult);
+                }
+
             }
         }
 
